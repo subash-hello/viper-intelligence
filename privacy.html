@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy Policy & Data Protection Protocol — Viper Intelligence. Enterprise confidentiality, Git IP handover security, and client data integrity standards.">
+  <title>Privacy Policy — Viper Intelligence</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=4.1">
+
+  <!-- Universal Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="dark-semester-theme">
+
+  <!-- FUTURISTIC SCI-FI PRELOADER SCREEN -->
+  <div id="site-preloader" class="site-preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo-wrap">
+        <div class="logo-glow-aura"></div>
+        <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Preloader Logo" class="preloader-logo-img">
+      </div>
+      <div class="preloader-brand-title">
+        <span class="brand-viper">VIPER</span>
+        <span class="brand-intel">INTELLIGENCE</span>
+      </div>
+      <div class="preloader-tagline">DATA PROTECTION & PRIVACY PROTOCOL</div>
+      <div class="preloader-progress-box">
+        <div class="preloader-bar-bg">
+          <div id="preloader-fill" class="preloader-fill"></div>
+        </div>
+        <div class="preloader-status-row">
+          <span id="preloader-status-text" class="status-text">INITIALIZING SECURITY POLICIES...</span>
+          <span id="preloader-percent" class="percent-text">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Binary Matrix Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- Ambient Background Watermark Emblem -->
+  <div class="background-watermark">
+    <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Background Emblem" class="watermark-logo-img">
+  </div>
+
+  <!-- Floating FAB to Reopen VIPER BOT -->
+  <button id="reopen-bot-btn" class="reopen-bot-fab" title="Open VIPER AI Assistant">
+    <span class="pulse-green"></span>
+    <span>🤖 VIPER AI</span>
+  </button>
+
+  <!-- Fixed Floating Sticky 3D AI Robot Assistant -->
+  <div id="sticky-3d-viewport" class="minimized">
+    <div id="robot-speech-bubble" class="robot-speech-bubble">
+      <div class="speech-header">
+        <div class="header-left">
+          <span class="pulse-green"></span>
+          <span class="bot-name">VIPER AI (ALEX)</span>
+        </div>
+        <div class="speech-header-actions">
+          <button id="toggle-chat-box-btn" class="toggle-chat-btn" title="Toggle Live Chat Window">💬 Chat</button>
+          <button id="close-bot-bubble-btn" class="close-chat-btn" title="Close Assistant Window" aria-label="Close Assistant">&times;</button>
+        </div>
+      </div>
+
+      <div id="bot-chat-messages" class="bot-chat-messages">
+        <div class="chat-msg bot-msg">
+          🛡️ Welcome to Viper Intelligence Data Protection. We operate on zero-telemetry snooping, strict NDAs, and 100% full IP handover.
+        </div>
+      </div>
+      
+      <div class="robot-quick-actions" id="robot-quick-actions">
+        <button class="bot-action-btn" data-action="services">💼 Services</button>
+        <button class="bot-action-btn" data-action="pricing">💎 Pricing</button>
+        <button class="bot-action-btn" data-action="contact">📞 Contact</button>
+        <button class="bot-action-btn" data-action="whatsapp" style="border-color: rgba(16, 185, 129, 0.6); color: #10b981;">💬 WhatsApp</button>
+      </div>
+
+      <form id="bot-chat-form" class="bot-chat-input-row">
+        <input type="text" id="bot-chat-input" placeholder="Ask Alex about NDA, IP rights, or privacy..." required autocomplete="off">
+        <button type="submit" id="bot-send-btn" class="bot-send-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div id="cube-canvas-container"></div>
+    <div class="cube-hint">🤖 VIPER BOT — Autonomous AI Companion</div>
+  </div>
+
+  <!-- Header Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon-wrap">
+          <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">VIPER</span>
+          <span class="brand-sub">INTELLIGENCE</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="services.html" class="nav-link">SERVICES</a>
+        <a href="projects.html" class="nav-link">PROJECTS</a>
+        <a href="about.html" class="nav-link">ABOUT</a>
+        <a href="pricing.html" class="nav-link">PRICING</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20have%20a%20question%20regarding%20data%20privacy%20and%20project%20security." class="btn-whatsapp-nav" target="_blank" rel="noopener noreferrer" data-open-booking-modal aria-label="Book on WhatsApp with Subash">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Book on WhatsApp</span>
+        </a>
+        <a href="contact.html" class="btn-contact-nav">Contact Us</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Subpage Hero Banner -->
+  <section class="page-hero-section">
+    <div class="section-container">
+      <div class="page-hero-content center">
+        <span class="badge-text-emerald">SECURITY PROTOCOL • ZERO-LEAK GUARANTEE</span>
+        <h1 class="page-hero-title">
+          Privacy Policy &amp; Data Integrity
+        </h1>
+        <p class="page-hero-subtitle">
+          How Viper Intelligence protects client confidentiality, proprietary codebases, architecture blueprints, and contact telemetry with enterprise-grade cryptographic standards.
+        </p>
+        <div style="margin-top: 14px;">
+          <span class="legal-meta-badge">
+            <span class="pulse-green"></span>
+            LAST UPDATED: SEPTEMBER 2026 • KATHMANDU, NEPAL
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Legal Document Content -->
+  <section class="legal-page-section">
+    <div class="section-container">
+      <div class="legal-layout">
+        
+        <!-- Table of Contents Sidebar -->
+        <aside class="legal-sidebar">
+          <div class="legal-sidebar-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Policy Index</span>
+          </div>
+          <nav>
+            <ul class="legal-nav-list">
+              <li><a href="#section-1" class="legal-nav-link active">1. Scope &amp; Commitment</a></li>
+              <li><a href="#section-2" class="legal-nav-link">2. Data We Collect</a></li>
+              <li><a href="#section-3" class="legal-nav-link">3. Usage of Information</a></li>
+              <li><a href="#section-4" class="legal-nav-link">4. Code &amp; IP Protection</a></li>
+              <li><a href="#section-5" class="legal-nav-link">5. Infrastructure &amp; Edge</a></li>
+              <li><a href="#section-6" class="legal-nav-link">6. WhatsApp Messaging</a></li>
+              <li><a href="#section-7" class="legal-nav-link">7. Data Retention &amp; Rights</a></li>
+              <li><a href="#section-8" class="legal-nav-link">8. Security &amp; Encryption</a></li>
+              <li><a href="#section-9" class="legal-nav-link">9. Compliance &amp; Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="legal-sidebar-contact">
+            <p>Need a custom bilateral Non-Disclosure Agreement (NDA) before sharing specifications?</p>
+            <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20we%20require%20a%20signed%20NDA%20before%20discussing%20our%20project." class="legal-sidebar-btn" target="_blank" rel="noopener noreferrer">
+              <span>Request Custom NDA &rarr;</span>
+            </a>
+          </div>
+        </aside>
+
+        <!-- Main Clauses Content -->
+        <main class="legal-content">
+
+          <!-- Section 1 -->
+          <article class="legal-card" id="section-1">
+            <div class="legal-card-header">
+              <span class="legal-section-number">01</span>
+              <h2 class="legal-card-title">Scope &amp; Engineering Philosophy</h2>
+            </div>
+            <p>
+              Viper Intelligence (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;), registered and operating in Kathmandu, Nepal under lead architects <strong>Subash Bhandari</strong> and <strong>Rohan Aacharya</strong>, provides bespoke high-performance software engineering, native mobile suites, cloud architecture, and artificial intelligence solutions.
+            </p>
+            <p>
+              We firmly believe that engineering integrity begins with absolute respect for client confidentiality and data ownership. This Privacy Policy outlines our transparent standards for collecting, processing, securing, and discarding data throughout discovery consultations, production sprints, and ongoing SLA maintenance.
+            </p>
+            <div class="legal-highlight-box">
+              <div class="legal-highlight-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Zero-Data Monetization Guarantee</span>
+              </div>
+              <p>
+                We do not sell, rent, broker, or trade client contact details, project specifications, proprietary code, or usage telemetry to any third-party advertisers, data aggregators, or unauthorized external parties. Ever.
+              </p>
+            </div>
+          </article>
+
+          <!-- Section 2 -->
+          <article class="legal-card" id="section-2">
+            <div class="legal-card-header">
+              <span class="legal-section-number">02</span>
+              <h2 class="legal-card-title">Information We Collect</h2>
+            </div>
+            <p>
+              We only collect information strictly required to engineer, evaluate, quote, and deliver your requested software solutions. Information collected is categorized into:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div>
+                  <strong>Client Discovery Details:</strong> Name, professional email address (e.g. <code>viperintelligence1@gmail.com</code> communications), telephone / WhatsApp number, company name, and project scope submitted via consultation forms or WhatsApp.
+                </div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div>
+                  <strong>Project Technical Artifacts:</strong> Architecture diagrams, functional specifications, third-party API credentials provided for sandbox integration, Figma mockups, and database schemas.
+                </div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div>
+                  <strong>Essential Web Telemetry:</strong> Anonymized server logs including request timestamps, response latency, device viewport metrics, and browser user-agent headers strictly used to optimize Web Vitals and resolve rendering bottlenecks.
+                </div>
+              </li>
+            </ul>
+            <p>
+              We do not deploy intrusive behavioral advertising pixels, tracking canvas fingerprinting, or third-party marketing beacons across our web platforms.
+            </p>
+          </article>
+
+          <!-- Section 3 -->
+          <article class="legal-card" id="section-3">
+            <div class="legal-card-header">
+              <span class="legal-section-number">03</span>
+              <h2 class="legal-card-title">How We Use Collected Information</h2>
+            </div>
+            <p>
+              Client information is processed exclusively for professional engineering purposes:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Engineering Sprints &amp; Architecture:</strong> Formulating project quotes, sprint milestones, system architecture blueprints, and database optimization strategies.</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Direct Client Communication:</strong> Conducting milestone reviews, testnet walkthroughs, and code review handovers directly with lead architects Subash Bhandari and Rohan Aacharya.</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Service Reliability &amp; SLA Monitoring:</strong> Ensuring uptime guarantees (99.99% availability) on managed infrastructure and delivering sub-second edge response times.</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Invoicing &amp; Contracts:</strong> Issuing formal milestone invoices, tax receipts, and verified milestone completion certificates.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Section 4 -->
+          <article class="legal-card" id="section-4">
+            <div class="legal-card-header">
+              <span class="legal-section-number">04</span>
+              <h2 class="legal-card-title">Source Code &amp; Intellectual Property Protection</h2>
+            </div>
+            <p>
+              At Viper Intelligence, intellectual property integrity is our hallmark. Unlike legacy software agencies that retain rights to your codebase or lock you into proprietary platforms:
+            </p>
+            <div class="legal-highlight-box orange-accent">
+              <div class="legal-highlight-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                <span>100% Full IP &amp; Git Repository Handover</span>
+              </div>
+              <p>
+                Upon milestone settlement, 100% of all custom-written source code, configuration scripts, deployment pipelines, database migrations, and design assets are legally transferred to your organization. Zero proprietary lock-in. Zero recurring agency royalty fees.
+              </p>
+            </div>
+            <p>
+              All proprietary algorithms, client business logic, and custom training datasets are treated as strictly confidential under binding bilateral NDA standards. We never train public machine learning models on your private enterprise data.
+            </p>
+          </article>
+
+          <!-- Section 5 -->
+          <article class="legal-card" id="section-5">
+            <div class="legal-card-header">
+              <span class="legal-section-number">05</span>
+              <h2 class="legal-card-title">Infrastructure, Edge Compute &amp; Cookies</h2>
+            </div>
+            <p>
+              Our production systems leverage enterprise edge computing infrastructure (Cloudflare, AWS, GCP, Vercel). Telemetry gathered through edge nodes is limited to performance verification (Time-to-First-Byte, P99 latency, and SSL certificate handshakes).
+            </p>
+            <p>
+              <strong>Cookie Usage:</strong> We utilize only strictly necessary, non-tracking cookies or localStorage variables for:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div>Preserving user preferences (e.g. dark semester theme state, collapsed floating assistant).</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div>Session state management for interactive cost calculator estimate presets.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Section 6 -->
+          <article class="legal-card" id="section-6">
+            <div class="legal-card-header">
+              <span class="legal-section-number">06</span>
+              <h2 class="legal-card-title">WhatsApp Messaging &amp; Direct Communications</h2>
+            </div>
+            <p>
+              When initiating contact through our <strong>WhatsApp Direct Booking</strong> triggers or contacting Subash Bhandari at <code>+977 9763876490</code>, your communication is protected by WhatsApp&rsquo;s end-to-end encryption protocols.
+            </p>
+            <p>
+              Messages, specifications, and audio consultations conducted via WhatsApp are stored on secure, hardware-encrypted devices exclusively accessed by authorized lead architects. We do not export your WhatsApp chat transcripts to public cloud spreadsheets or third-party CRM scrapers.
+            </p>
+          </article>
+
+          <!-- Section 7 -->
+          <article class="legal-card" id="section-7">
+            <div class="legal-card-header">
+              <span class="legal-section-number">07</span>
+              <h2 class="legal-card-title">Client Data Retention &amp; Right to Deletion</h2>
+            </div>
+            <p>
+              We maintain project records only as long as necessary to fulfill contractual warranties and taxation compliance:
+            </p>
+            <div class="legal-table-wrap">
+              <table class="legal-table">
+                <thead>
+                  <tr>
+                    <th>Data Category</th>
+                    <th>Retention Period</th>
+                    <th>Post-Retention Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Staging DBs &amp; Test Sandbox Credentials</td>
+                    <td>14 days post-handover</td>
+                    <td>Cryptographic wipe &amp; key rotation</td>
+                  </tr>
+                  <tr>
+                    <td>Client Source Code Repositories</td>
+                    <td>Permanent handover to client</td>
+                    <td>Archived in client-controlled Git org</td>
+                  </tr>
+                  <tr>
+                    <td>Billing &amp; Tax Invoices</td>
+                    <td>7 years (statutory requirement)</td>
+                    <td>Secure encrypted offline archive</td>
+                  </tr>
+                  <tr>
+                    <td>Unconverted Discovery Inquiries</td>
+                    <td>90 days</td>
+                    <td>Automatic permanent purge</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              <strong>Your Rights:</strong> Under our privacy protocol, you have the right to request access to, rectification of, or complete permanent erasure (&ldquo;Right to be Forgotten&rdquo;) of all stored client records by emailing <code>viperintelligence1@gmail.com</code>.
+            </p>
+          </article>
+
+          <!-- Section 8 -->
+          <article class="legal-card" id="section-8">
+            <div class="legal-card-header">
+              <span class="legal-section-number">08</span>
+              <h2 class="legal-card-title">Security Architecture &amp; Encryption Standards</h2>
+            </div>
+            <p>
+              Security is not an afterthought at Viper Intelligence; it is our primary architectural principle:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>In-Transit Encryption:</strong> Enforced TLS 1.3 encryption across all public interfaces with strict HSTS (HTTP Strict Transport Security) headers.</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>At-Rest Encryption:</strong> All engineering workspaces, production keys, and database volumes are encrypted using AES-256-GCM standards.</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Zero-Trust Access Control:</strong> Two-factor authentication (2FA) and biometric hardware keys are enforced for all production server and repository access.</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Incident Protocol:</strong> In the unlikely event of any security vulnerability affecting client assets, we commit to notifying affected clients within 24 hours with remediation telemetry.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Section 9 -->
+          <article class="legal-card" id="section-9">
+            <div class="legal-card-header">
+              <span class="legal-section-number">09</span>
+              <h2 class="legal-card-title">Jurisdiction &amp; Data Protection Officer Contact</h2>
+            </div>
+            <p>
+              This Privacy Policy is governed by the laws of Nepal and aligned with international data protection frameworks (including GDPR principles for international cross-border engineering).
+            </p>
+            <p>
+              For legal inquiries, NDA requests, or data privacy verification, contact our engineering leadership directly:
+            </p>
+            <ul class="legal-list">
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Engineering Headquarters:</strong> Viper Intelligence Lab, Kathmandu, Nepal</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Data Protection Officer:</strong> Subash Bhandari (Lead Architect)</div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Official Email:</strong> <a href="mailto:viperintelligence1@gmail.com" style="color: #10b981; text-decoration: underline;">viperintelligence1@gmail.com</a></div>
+              </li>
+              <li>
+                <span class="legal-list-dot">&#9670;</span>
+                <div><strong>Direct WhatsApp Line:</strong> <a href="https://wa.me/9779763876490" target="_blank" rel="noopener noreferrer" style="color: #10b981; text-decoration: underline;">+977 9763876490</a></div>
+              </li>
+            </ul>
+          </article>
+
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="cta-banner-section">
+    <div class="section-container">
+      <div class="cta-banner-box">
+        <div class="cta-banner-text">
+          <h2>Require Custom Enterprise Security Protocols?</h2>
+          <p>We routinely execute custom bilateral NDAs, SOC2 compliance frameworks, and on-premise deployment handovers for scaling enterprises.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20we%20want%20to%20discuss%20enterprise%20security%20and%20NDA%20terms." class="btn-whatsapp-hero" target="_blank" rel="noopener noreferrer" data-open-booking-modal>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            <span>Book Security Consultation</span>
+          </a>
+          <a href="contact.html" class="btn-primary-orange">
+            <span>Direct Intake Portal</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="footer-section">
+    <div class="footer-container">
+      <div class="footer-col footer-brand-col">
+        <a href="index.html" class="brand-logo footer-logo">
+          <div class="logo-icon-wrap">
+            <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Footer Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">VIPER</span>
+            <span class="brand-sub">INTELLIGENCE</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Architecting mission-critical edge applications, resilient distributed systems, and native mobile platforms with zero compromise on speed.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">KATHMANDU, NEPAL</span>
+          <span class="footer-badge">GLOBAL DEPLOYMENTS</span>
+        </div>
+      </div>
+
+      <div class="footer-col footer-nav-col">
+        <h4 class="footer-title">Engineering</h4>
+        <ul class="footer-links">
+          <li><a href="services.html">Edge Applications</a></li>
+          <li><a href="services.html">Mobile Suites</a></li>
+          <li><a href="services.html">Cloud Architecture</a></li>
+          <li><a href="services.html">AI Systems &amp; Bots</a></li>
+          <li><a href="services.html#calculator">Cost Calculator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-nav-col">
+        <h4 class="footer-title">Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About &amp; Founders</a></li>
+          <li><a href="projects.html">Shipped Systems</a></li>
+          <li><a href="pricing.html">Pricing Tiers</a></li>
+          <li><a href="contact.html">Consultation Portal</a></li>
+          <li><a href="privacy.html" style="color: #10b981;">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-newsletter-col">
+        <h4 class="footer-title">Stay Connected</h4>
+        <p class="newsletter-sub">Subscribe to our newsletter for exclusive tech updates &amp; digital insights.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Enter your email..." required>
+          <button type="submit" aria-label="Subscribe">Join</button>
+        </form>
+        <div class="footer-founders-badge">
+          <span>🚀 Lead Founders: Subash Bhandari &amp; Rohan Aacharya</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 <strong>VIPER INTELLIGENCE</strong>. Engineered for High Performance. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <span class="dot-sep">•</span>
+          <a href="terms.html">Terms of Service</a>
+          <span class="dot-sep">•</span>
+          <a href="https://wa.me/9779763876490" target="_blank" rel="noopener">WhatsApp Direct</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Direct WhatsApp Quick-Booking FAB (Pinned Bottom-Left) -->
+  <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20have%20a%20question%20regarding%20data%20privacy%20and%20project%20security." class="floating-whatsapp-fab" id="floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Message to Subash Bhandari" data-open-booking-modal>
+    <div class="whatsapp-fab-icon-wrap">
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      <span class="pulse-online"></span>
+    </div>
+    <div class="whatsapp-fab-label">
+      <span class="fab-sub">SUBASH • ONLINE</span>
+      <span class="fab-main">Book on WhatsApp</span>
+    </div>
+  </a>
+
+  <!-- Universal 1-Click WhatsApp Booking Modal -->
+  <div id="whatsapp-booking-modal" class="whatsapp-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="whatsapp-modal-card">
+      <button class="whatsapp-modal-close" id="whatsapp-modal-close" aria-label="Close modal">&times;</button>
+      <div class="whatsapp-modal-header">
+        <span class="modal-badge"><span class="pulse-green"></span> SUBASH BHANDARI • ONLINE</span>
+        <h3>Direct WhatsApp Project Booking</h3>
+        <p>Connect immediately with Lead Architect Subash Bhandari. Select your requirements below to generate an instant project specification payload.</p>
+      </div>
+      <form id="whatsapp-booking-form" class="whatsapp-booking-form">
+        <div class="form-group">
+          <label for="wa-client-name">YOUR NAME / COMPANY</label>
+          <input type="text" id="wa-client-name" placeholder="e.g. John Doe / Apex Corp" required>
+        </div>
+        <div class="form-group">
+          <label for="wa-service-type">SERVICE OF INTEREST</label>
+          <select id="wa-service-type" required>
+            <option value="Full-Stack Web Application (React / Next.js)">Full-Stack Web Application (React / Next.js)</option>
+            <option value="Native Mobile Suite (iOS & Android)">Native Mobile Suite (iOS & Android)</option>
+            <option value="Managed Cloud Hosting & Edge CDN">Managed Cloud Hosting & Edge CDN</option>
+            <option value="Brand Identity, 3D Assets & UI/UX">Brand Identity, 3D Assets & UI/UX</option>
+            <option value="Enterprise Architecture & Security Audit">Enterprise Architecture & Security Audit</option>
+            <option value="Custom Software Development">Custom Software Development</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-budget-tier">ESTIMATED BUDGET TIER</label>
+          <select id="wa-budget-tier" required>
+            <option value="Startup Launch (Rs 10,000)">Startup Launch (Rs 10,000)</option>
+            <option value="Scale & Business (Rs 30,000)" selected>Scale & Business (Rs 30,000)</option>
+            <option value="Enterprise Custom (Rs 50,000+)">Enterprise Custom (Rs 50,000+)</option>
+            <option value="Flexible / Hourly Architecture Consultation">Flexible / Hourly Architecture Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-timeline">TARGET TIMELINE</label>
+          <select id="wa-timeline">
+            <option value="Immediate (< 7 Days)">Immediate (&lt; 7 Days)</option>
+            <option value="Standard Sprint (2 - 4 Weeks)" selected>Standard Sprint (2 - 4 Weeks)</option>
+            <option value="Comprehensive Build (1 - 2 Months)">Comprehensive Build (1 - 2 Months)</option>
+            <option value="Planning / Exploratory Phase">Planning / Exploratory Phase</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-project-notes">PROJECT BRIEF / GOALS (OPTIONAL)</label>
+          <textarea id="wa-project-notes" rows="3" placeholder="Tell Subash about your project vision, target audience, or reference links..."></textarea>
+        </div>
+        <button type="submit" class="btn-dispatch-modal-whatsapp" id="btn-submit-whatsapp-booking">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Send Instant WhatsApp Message to Subash &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Universal Script Setup -->
+  <script src="main.js?v=4.1"></script>
+</body>
+</html>

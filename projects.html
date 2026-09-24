@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio & Production Case Studies — Explore live web platforms, mobile applications, and AI systems engineered by Viper Intelligence.">
+  <title>Projects & Case Studies — Viper Intelligence</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=4.0">
+
+  <!-- Universal Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="dark-semester-theme">
+
+  <!-- FUTURISTIC SCI-FI PRELOADER SCREEN -->
+  <div id="site-preloader" class="site-preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo-wrap">
+        <div class="logo-glow-aura"></div>
+        <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Preloader Logo" class="preloader-logo-img">
+      </div>
+      <div class="preloader-brand-title">
+        <span class="brand-viper">VIPER</span>
+        <span class="brand-intel">INTELLIGENCE</span>
+      </div>
+      <div class="preloader-tagline">PORTFOLIO & CASE STUDIES</div>
+      <div class="preloader-progress-box">
+        <div class="preloader-bar-bg">
+          <div id="preloader-fill" class="preloader-fill"></div>
+        </div>
+        <div class="preloader-status-row">
+          <span id="preloader-status-text" class="status-text">LOADING PRODUCTION CASE STUDIES...</span>
+          <span id="preloader-percent" class="percent-text">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Binary Matrix Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- Ambient Background Watermark Emblem -->
+  <div class="background-watermark">
+    <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Background Emblem" class="watermark-logo-img">
+  </div>
+
+  <!-- Floating FAB to Reopen VIPER BOT -->
+  <button id="reopen-bot-btn" class="reopen-bot-fab" title="Open VIPER AI Assistant">
+    <span class="pulse-green"></span>
+    <span>🤖 VIPER AI</span>
+  </button>
+
+  <!-- Fixed Floating Sticky 3D AI Robot Assistant -->
+  <div id="sticky-3d-viewport" class="minimized">
+    <div id="robot-speech-bubble" class="robot-speech-bubble">
+      <div class="speech-header">
+        <div class="header-left">
+          <span class="pulse-green"></span>
+          <span class="bot-name">VIPER AI (ALEX)</span>
+        </div>
+        <div class="speech-header-actions">
+          <button id="toggle-chat-box-btn" class="toggle-chat-btn" title="Toggle Live Chat Window">💬 Chat</button>
+          <button id="close-bot-bubble-btn" class="close-chat-btn" title="Close Assistant Window" aria-label="Close Assistant">&times;</button>
+        </div>
+      </div>
+
+      <div id="bot-chat-messages" class="bot-chat-messages">
+        <div class="chat-msg bot-msg">
+          🚀 Welcome to our production showcase! Click any project category tab to filter by AI, Web, Mobile, or Healthcare!
+        </div>
+      </div>
+      
+      <div class="robot-quick-actions" id="robot-quick-actions">
+        <button class="bot-action-btn" data-action="services">💼 Services</button>
+        <button class="bot-action-btn" data-action="projects">🚀 Projects</button>
+        <button class="bot-action-btn" data-action="pricing">💎 Pricing</button>
+        <button class="bot-action-btn" data-action="contact">📞 Contact</button>
+        <button class="bot-action-btn" data-action="whatsapp" style="border-color: rgba(16, 185, 129, 0.6); color: #10b981;">💬 WhatsApp</button>
+      </div>
+
+      <form id="bot-chat-form" class="bot-chat-input-row">
+        <input type="text" id="bot-chat-input" placeholder="Ask Alex about live client platforms..." required autocomplete="off">
+        <button type="submit" id="bot-send-btn" class="bot-send-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div id="cube-canvas-container"></div>
+    <div class="cube-hint">🤖 VIPER BOT — Click to inspect live platforms</div>
+  </div>
+
+  <!-- Header Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon-wrap">
+          <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">VIPER</span>
+          <span class="brand-sub">INTELLIGENCE</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="services.html" class="nav-link">SERVICES</a>
+        <a href="projects.html" class="nav-link active">PROJECTS</a>
+        <a href="about.html" class="nav-link">ABOUT</a>
+        <a href="pricing.html" class="nav-link">PRICING</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20saw%20your%20projects%20and%20want%20to%20book%20a%20build%20with%20Viper%20Intelligence." class="btn-whatsapp-nav" target="_blank" rel="noopener noreferrer" data-open-booking-modal aria-label="Book on WhatsApp with Subash">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Book on WhatsApp</span>
+        </a>
+        <a href="contact.html" class="btn-contact-nav">Contact Us</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Subpage Hero Banner -->
+  <section class="page-hero-section">
+    <div class="section-container">
+      <div class="page-hero-content center">
+        <span class="badge-text-cyan">PRODUCTION DELIVERABLES</span>
+        <h1 class="page-hero-title">
+          Live Client Platforms & Case Studies
+        </h1>
+        <p class="page-hero-subtitle">
+          Explore real-world software, AI systems, and mobile applications engineered by Viper Intelligence that drive measurable engagement and revenue for global businesses.
+        </p>
+      </div>
+
+      <!-- Filterable Category Tabs -->
+      <div class="project-filter-bar" id="project-filter-bar">
+        <button class="filter-btn active" data-filter="all">⚡ All Deliverables</button>
+        <button class="filter-btn" data-filter="ai">🤖 AI & EdTech</button>
+        <button class="filter-btn" data-filter="web">💻 Web Platforms</button>
+        <button class="filter-btn" data-filter="mobile">📱 Mobile Suites</button>
+        <button class="filter-btn" data-filter="healthcare">🏥 Healthcare & Hospitality</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Showcase Grid -->
+  <section class="projects-gallery-section">
+    <div class="section-container">
+      <div class="projects-full-grid" id="projects-full-grid">
+        
+        <!-- Case Study 1: Master IELTS AI -->
+        <div class="project-showcase-card filter-item" data-category="ai web">
+          <div class="project-img-preview ielts-bg">
+            <div class="project-badge-tag">AI & EDTECH</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> LIVE DEPLOYMENT</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Master IELTS AI</h3>
+            <p class="project-subhead">Master IELTS with Artificial Intelligence</p>
+            <p class="project-desc">Real-time speaking analysis, essay grammar scoring, and interactive exam practice powered by large language models. Delivered sub-second latency feedback for students worldwide.</p>
+            <div class="project-meta-pills">
+              <span>Next.js</span><span>OpenAI LLM</span><span>Web Audio API</span><span>Edge SSR</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://masterieltsai.com" target="_blank" rel="noopener" class="btn-visit-project">
+                <span>Visit masterieltsai.com</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 2: Specialty Coffee Cafe -->
+        <div class="project-showcase-card filter-item" data-category="healthcare web">
+          <div class="project-img-preview cafe-bg">
+            <div class="project-badge-tag">HOSPITALITY & CAFE</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> LIVE DEPLOYMENT</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Crafted Coffee & Brunch</h3>
+            <p class="project-subhead">Crafted Coffee. Shared Moments.</p>
+            <p class="project-desc">High-end culinary experience portal featuring instant table bookings, dynamic menu filtering, barista stories, and mobile-first responsive interactions with 60fps animations.</p>
+            <div class="project-meta-pills">
+              <span>React</span><span>Table Booking</span><span>Glassmorphism</span><span>Fast CDN</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://subash-hello.github.io/cafe/" target="_blank" rel="noopener" class="btn-visit-project">
+                <span>Visit subash-hello.github.io/cafe/</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 3: Angel Family Dentistry -->
+        <div class="project-showcase-card filter-item" data-category="healthcare web">
+          <div class="project-img-preview dental-bg">
+            <div class="project-badge-tag">HEALTHCARE & CLINICAL</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> LIVE DEPLOYMENT</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Angel Family Dentistry</h3>
+            <p class="project-subhead">Let's Bring Back The Smile to Your Face!</p>
+            <p class="project-desc">Complete medical dental appointment scheduling portal with live verified patient reviews, doctor schedule synchronization, and zero-trust patient data security.</p>
+            <div class="project-meta-pills">
+              <span>Next.js</span><span>HIPAA Encryption</span><span>Vercel Edge</span><span>Appointment API</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://dental-help.vercel.app" target="_blank" rel="noopener" class="btn-visit-project">
+                <span>Visit dental-help.vercel.app</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 4: Cloud Enterprise Workspace -->
+        <div class="project-showcase-card filter-item" data-category="web">
+          <div class="project-img-preview" style="background-image: linear-gradient(180deg, rgba(6,9,19,0.3), rgba(6,9,19,0.9)), url('assets/project1.jpg'); background-size: cover;">
+            <div class="project-badge-tag">SAAS & CLOUD</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> VERIFIED BUILD</div>
+          </div>
+          <div class="project-card-body">
+            <h3>OmniCloud Enterprise Hub</h3>
+            <p class="project-subhead">Distributed Multi-Tenant Cloud Console</p>
+            <p class="project-desc">Enterprise operations management dashboard with real-time telemetry streaming, role-based access management, and automated cluster deployment pipelines.</p>
+            <div class="project-meta-pills">
+              <span>Kubernetes</span><span>Docker</span><span>TypeScript</span><span>WebSockets</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="contact.html" class="btn-visit-project">
+                <span>Request Case Study Specs</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 5: Quantum Mobile FinTech -->
+        <div class="project-showcase-card filter-item" data-category="mobile">
+          <div class="project-img-preview" style="background-image: linear-gradient(180deg, rgba(6,9,19,0.3), rgba(6,9,19,0.9)), url('assets/project2.jpg'); background-size: cover;">
+            <div class="project-badge-tag">FINTECH & MOBILE</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> VERIFIED BUILD</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Quantum Pay & Crypto Wallet</h3>
+            <p class="project-subhead">Biometric Micro-Payments & Assets</p>
+            <p class="project-desc">Ultra-secure mobile wallet engineered with React Native and native biometric encryption modules. Supports instant peer-to-peer settlement and offline balance caching.</p>
+            <div class="project-meta-pills">
+              <span>React Native</span><span>Biometrics</span><span>Stripe API</span><span>PostgreSQL</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="contact.html" class="btn-visit-project">
+                <span>Request Mobile Demo</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 6: Global Direct E-Commerce -->
+        <div class="project-showcase-card filter-item" data-category="web">
+          <div class="project-img-preview" style="background-image: linear-gradient(180deg, rgba(6,9,19,0.3), rgba(6,9,19,0.9)), url('assets/project3.jpg'); background-size: cover;">
+            <div class="project-badge-tag">E-COMMERCE</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> VERIFIED BUILD</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Apex Apparel Store</h3>
+            <p class="project-subhead">High-Conversion Headless Storefront</p>
+            <p class="project-desc">Sub-second headless e-commerce store with dynamic inventory tracking, automated coupon logic, one-click checkout, and synchronized order tracking.</p>
+            <div class="project-meta-pills">
+              <span>Next.js 14</span><span>Shopify Headless</span><span>Tailwind</span><span>Cloudflare</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="contact.html" class="btn-visit-project">
+                <span>Request E-Commerce Blueprint</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 7: Autonomous RAG Intelligence -->
+        <div class="project-showcase-card filter-item" data-category="ai">
+          <div class="project-img-preview" style="background-image: linear-gradient(180deg, rgba(6,9,19,0.3), rgba(6,9,19,0.9)), url('assets/project4.jpg'); background-size: cover;">
+            <div class="project-badge-tag">ARTIFICIAL INTELLIGENCE</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> VERIFIED BUILD</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Synthetix AI Research Engine</h3>
+            <p class="project-subhead">RAG Search on Enterprise Document Archives</p>
+            <p class="project-desc">Custom vector database pipeline enabling natural language querying over 100,000+ proprietary PDF manuals, contracts, and research reports with exact citations.</p>
+            <div class="project-meta-pills">
+              <span>Pinecone</span><span>Python FastAPI</span><span>LangChain</span><span>Llama 3</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="contact.html" class="btn-visit-project">
+                <span>Request AI Architecture</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 8: Security Mesh Console -->
+        <div class="project-showcase-card filter-item" data-category="web">
+          <div class="project-img-preview" style="background-image: linear-gradient(180deg, rgba(6,9,19,0.3), rgba(6,9,19,0.9)), url('assets/project5.jpg'); background-size: cover;">
+            <div class="project-badge-tag">CYBER DEFENSE</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> VERIFIED BUILD</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Viper Shield Intrusion Console</h3>
+            <p class="project-subhead">Live API Vulnerability & Attack Mitigation</p>
+            <p class="project-desc">Real-time threat visualization interface tracking DDoS bursts, bot scraping attempts, and anomalous API traffic with automated IP quarantine triggers.</p>
+            <div class="project-meta-pills">
+              <span>WAF Logs</span><span>Node.js</span><span>Redis</span><span>Grafana</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="contact.html" class="btn-visit-project">
+                <span>Request Security Audit</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 9: Interactive 3D Real Estate WebGL -->
+        <div class="project-showcase-card filter-item" data-category="web">
+          <div class="project-img-preview" style="background-image: linear-gradient(180deg, rgba(6,9,19,0.3), rgba(6,9,19,0.9)), url('assets/project6.jpg'); background-size: cover;">
+            <div class="project-badge-tag">3D WEBGL GRAPHICS</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> VERIFIED BUILD</div>
+          </div>
+          <div class="project-card-body">
+            <h3>AeroSpatial 3D Property Tours</h3>
+            <p class="project-subhead">In-Browser Real Estate Walkthroughs</p>
+            <p class="project-desc">High-fidelity 3D WebGL spatial walkthroughs allowing property investors to inspect floor plans, lighting conditions, and materials directly in any mobile or desktop browser.</p>
+            <div class="project-meta-pills">
+              <span>Three.js</span><span>Blender GLTF</span><span>WebGL 2.0</span><span>PBR Shaders</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="contact.html" class="btn-visit-project">
+                <span>Request 3D Demo</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-banner-section">
+    <div class="section-container">
+      <div class="cta-banner-box">
+        <div class="cta-banner-text">
+          <h2>Have a project in mind? Let's build your case study next.</h2>
+          <p>We deliver tailored software solutions on time, within budget, and with guaranteed support.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <button type="button" class="btn-whatsapp-hero" data-open-booking-modal>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            <span>Book on WhatsApp &rarr;</span>
+          </button>
+          <a href="contact.html" class="btn-primary-orange"><span>Start Your Project Now &rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ULTRA-PREMIUM FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col footer-brand-col">
+        <a href="index.html" class="brand-logo footer-brand-logo">
+          <div class="logo-icon-wrap footer-logo-wrap">
+            <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-text footer-brand-text">
+            <span class="brand-name footer-brand-title">VIPER</span>
+            <span class="brand-sub footer-brand-sub">INTELLIGENCE</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Empowering startups & enterprise brands with cutting-edge web, mobile, and digital growth platforms.</p>
+        <div class="footer-contact-pills">
+          <a href="https://wa.me/9779763876490" target="_blank" rel="noopener" class="footer-pill-item">
+            <span class="pill-icon">💬</span><span>+977 9763876490</span>
+          </a>
+          <a href="mailto:viperintelligence1@gmail.com" class="footer-pill-item">
+            <span class="pill-icon">📧</span><span>viperintelligence1@gmail.com</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html"><span>&rsaquo;</span> Home</a></li>
+          <li><a href="about.html"><span>&rsaquo;</span> About Us</a></li>
+          <li><a href="projects.html"><span>&rsaquo;</span> Recent Projects</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Our Services</a></li>
+          <li><a href="pricing.html"><span>&rsaquo;</span> Pricing Plans</a></li>
+          <li><a href="contact.html"><span>&rsaquo;</span> Contact Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Our Solutions</h4>
+        <ul class="footer-links-list">
+          <li><a href="services.html"><span>&rsaquo;</span> Web Development</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> App Development</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Managed Web Hosting</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Branding & 3D Assets</a></li>
+          <li><a href="services.html#calculator"><span>&rsaquo;</span> Cost Estimator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-newsletter-col">
+        <h4 class="footer-title">Stay Connected</h4>
+        <p class="newsletter-sub">Subscribe to our newsletter for exclusive tech updates & digital insights.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Enter your email..." required>
+          <button type="submit" aria-label="Subscribe">Join</button>
+        </form>
+        <div class="footer-founders-badge">
+          <span>🚀 Lead Founders: Subash Bhandari & Rohan Aacharya</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 <strong>VIPER INTELLIGENCE</strong>. Engineered for High Performance. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <span class="dot-sep">•</span>
+          <a href="terms.html">Terms of Service</a>
+          <span class="dot-sep">•</span>
+          <a href="https://wa.me/9779763876490" target="_blank" rel="noopener">WhatsApp Direct</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Direct WhatsApp Quick-Booking FAB (Pinned Bottom-Left) -->
+  <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20am%20interested%20in%20booking%20a%20project%20with%20Viper%20Intelligence." class="floating-whatsapp-fab" id="floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Message to Subash Bhandari" data-open-booking-modal>
+    <div class="whatsapp-fab-icon-wrap">
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      <span class="pulse-online"></span>
+    </div>
+    <div class="whatsapp-fab-label">
+      <span class="fab-sub">SUBASH • ONLINE</span>
+      <span class="fab-main">Book on WhatsApp</span>
+    </div>
+  </a>
+
+  <!-- Universal 1-Click WhatsApp Booking Modal -->
+  <div id="whatsapp-booking-modal" class="whatsapp-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="whatsapp-modal-card">
+      <button class="whatsapp-modal-close" id="whatsapp-modal-close" aria-label="Close modal">&times;</button>
+      <div class="whatsapp-modal-header">
+        <span class="modal-badge"><span class="pulse-green"></span> SUBASH BHANDARI • ONLINE</span>
+        <h3>Direct WhatsApp Project Booking</h3>
+        <p>Connect immediately with Lead Architect Subash Bhandari. Select your requirements below to generate an instant project specification payload.</p>
+      </div>
+      <form id="whatsapp-booking-form" class="whatsapp-booking-form">
+        <div class="form-group">
+          <label for="wa-client-name">YOUR NAME / COMPANY</label>
+          <input type="text" id="wa-client-name" placeholder="e.g. John Doe / Apex Corp" required>
+        </div>
+        <div class="form-group">
+          <label for="wa-service-type">SERVICE OF INTEREST</label>
+          <select id="wa-service-type" required>
+            <option value="Full-Stack Web Application (React / Next.js)">Full-Stack Web Application (React / Next.js)</option>
+            <option value="Native Mobile Suite (iOS & Android)">Native Mobile Suite (iOS & Android)</option>
+            <option value="Managed Cloud Hosting & Edge CDN">Managed Cloud Hosting & Edge CDN</option>
+            <option value="Brand Identity, 3D Assets & UI/UX">Brand Identity, 3D Assets & UI/UX</option>
+            <option value="Enterprise Architecture & Security Audit">Enterprise Architecture & Security Audit</option>
+            <option value="Custom Software Development">Custom Software Development</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-budget-tier">ESTIMATED BUDGET TIER</label>
+          <select id="wa-budget-tier" required>
+            <option value="Startup Launch (Rs 10,000)">Startup Launch (Rs 10,000)</option>
+            <option value="Scale & Business (Rs 30,000)" selected>Scale & Business (Rs 30,000)</option>
+            <option value="Enterprise Custom (Rs 50,000+)">Enterprise Custom (Rs 50,000+)</option>
+            <option value="Flexible / Hourly Architecture Consultation">Flexible / Hourly Architecture Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-timeline">TARGET TIMELINE</label>
+          <select id="wa-timeline">
+            <option value="Immediate (< 7 Days)">Immediate (&lt; 7 Days)</option>
+            <option value="Standard Sprint (2 - 4 Weeks)" selected>Standard Sprint (2 - 4 Weeks)</option>
+            <option value="Comprehensive Build (1 - 2 Months)">Comprehensive Build (1 - 2 Months)</option>
+            <option value="Planning / Exploratory Phase">Planning / Exploratory Phase</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-project-notes">PROJECT BRIEF / GOALS (OPTIONAL)</label>
+          <textarea id="wa-project-notes" rows="3" placeholder="Tell Subash about your project vision, target audience, or reference links..."></textarea>
+        </div>
+        <button type="submit" class="btn-dispatch-modal-whatsapp" id="btn-submit-whatsapp-booking">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Send Instant WhatsApp Message to Subash &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Universal Script Setup -->
+  <script src="main.js?v=4.0"></script>
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Viper Intelligence — Connect with Subash Bhandari and Rohan Aacharya. Schedule an architecture review, request a quote, or chat on WhatsApp.">
+  <title>Contact & Consultation — Viper Intelligence</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=4.0">
+
+  <!-- Universal Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="dark-semester-theme">
+
+  <!-- FUTURISTIC SCI-FI PRELOADER SCREEN -->
+  <div id="site-preloader" class="site-preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo-wrap">
+        <div class="logo-glow-aura"></div>
+        <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Preloader Logo" class="preloader-logo-img">
+      </div>
+      <div class="preloader-brand-title">
+        <span class="brand-viper">VIPER</span>
+        <span class="brand-intel">INTELLIGENCE</span>
+      </div>
+      <div class="preloader-tagline">CONSULTATION & INQUIRY PORTAL</div>
+      <div class="preloader-progress-box">
+        <div class="preloader-bar-bg">
+          <div id="preloader-fill" class="preloader-fill"></div>
+        </div>
+        <div class="preloader-status-row">
+          <span id="preloader-status-text" class="status-text">INITIALIZING SECURE CHANNEL...</span>
+          <span id="preloader-percent" class="percent-text">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Binary Matrix Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- Ambient Background Watermark Emblem -->
+  <div class="background-watermark">
+    <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Background Emblem" class="watermark-logo-img">
+  </div>
+
+  <!-- Floating FAB to Reopen VIPER BOT -->
+  <button id="reopen-bot-btn" class="reopen-bot-fab" title="Open VIPER AI Assistant">
+    <span class="pulse-green"></span>
+    <span>🤖 VIPER AI</span>
+  </button>
+
+  <!-- Fixed Floating Sticky 3D AI Robot Assistant -->
+  <div id="sticky-3d-viewport" class="minimized">
+    <div id="robot-speech-bubble" class="robot-speech-bubble">
+      <div class="speech-header">
+        <div class="header-left">
+          <span class="pulse-green"></span>
+          <span class="bot-name">VIPER AI (ALEX)</span>
+        </div>
+        <div class="speech-header-actions">
+          <button id="toggle-chat-box-btn" class="toggle-chat-btn" title="Toggle Live Chat Window">💬 Chat</button>
+          <button id="close-bot-bubble-btn" class="close-chat-btn" title="Close Assistant Window" aria-label="Close Assistant">&times;</button>
+        </div>
+      </div>
+
+      <div id="bot-chat-messages" class="bot-chat-messages">
+        <div class="chat-msg bot-msg">
+          📞 Ready to turn your vision into high-performance software? Message Subash Bhandari directly or dispatch your project brief below!
+        </div>
+      </div>
+      
+      <div class="robot-quick-actions" id="robot-quick-actions">
+        <button class="bot-action-btn" data-action="services">💼 Services</button>
+        <button class="bot-action-btn" data-action="projects">🚀 Projects</button>
+        <button class="bot-action-btn" data-action="pricing">💎 Pricing</button>
+        <button class="bot-action-btn" data-action="contact">📞 Contact</button>
+        <button class="bot-action-btn" data-action="whatsapp" style="border-color: rgba(16, 185, 129, 0.6); color: #10b981;">💬 WhatsApp</button>
+      </div>
+
+      <form id="bot-chat-form" class="bot-chat-input-row">
+        <input type="text" id="bot-chat-input" placeholder="Ask Alex how to schedule a consultation..." required autocomplete="off">
+        <button type="submit" id="bot-send-btn" class="bot-send-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div id="cube-canvas-container"></div>
+    <div class="cube-hint">🤖 VIPER BOT — Autonomous AI Companion</div>
+  </div>
+
+  <!-- Header Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon-wrap">
+          <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">VIPER</span>
+          <span class="brand-sub">INTELLIGENCE</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="services.html" class="nav-link">SERVICES</a>
+        <a href="projects.html" class="nav-link">PROJECTS</a>
+        <a href="about.html" class="nav-link">ABOUT</a>
+        <a href="pricing.html" class="nav-link">PRICING</a>
+        <a href="contact.html" class="nav-link active">CONTACT</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20want%20to%20consult%20with%20you%20directly%20regarding%20a%20project." class="btn-whatsapp-nav" target="_blank" rel="noopener noreferrer" data-open-booking-modal aria-label="Book on WhatsApp with Subash">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Book on WhatsApp</span>
+        </a>
+        <a href="contact.html" class="btn-contact-nav">Contact Us</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Subpage Hero Banner -->
+  <section class="page-hero-section">
+    <div class="section-container">
+      <div class="page-hero-content center">
+        <span class="badge-text-cyan">START A CONVERSATION</span>
+        <h1 class="page-hero-title">
+          Let’s Engineer Your Next Competitive Advantage
+        </h1>
+        <p class="page-hero-subtitle">
+          Direct communication with our technical founders. No sales middlemen, no generic pitches — just focused architecture discussions, clear feasibility assessments, and actionable delivery timelines.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Grid Section -->
+  <section class="contact-section">
+    <div class="section-container">
+      
+      <!-- Live Status Bar -->
+      <div class="status-banner-card">
+        <div class="status-indicator">
+          <span class="status-pulse-dot"></span>
+          <span class="status-text-bold">CURRENT STATUS:</span>
+          <span class="status-detail">Accepting New Client Builds &amp; Enterprise Consultations</span>
+        </div>
+        <div class="response-time-badge">
+          <span>⚡ Avg. Response Time: &lt; 2 Hours</span>
+        </div>
+      </div>
+
+      <div class="contact-main-grid">
+        
+        <!-- Left Column: Direct Channels & Founders -->
+        <div class="contact-info-col">
+          
+          <!-- Subash Bhandari Card -->
+          <div class="founder-contact-card">
+            <div class="founder-card-header">
+              <div class="team-avatar-wrap" style="width: 72px; height: 72px; margin: 0; flex-shrink: 0;">
+                <div class="avatar-glow"></div>
+                <div class="team-avatar-inner" style="width: 100%; height: 100%;">
+                  <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="35" r="22" fill="#ff6b00"/><path d="M20 90 C20 65 80 65 80 90" fill="#10b981"/></svg>
+                </div>
+              </div>
+              <div class="founder-meta">
+                <span class="founder-role-badge">LEAD ARCHITECT</span>
+                <h3 class="founder-name">Subash Bhandari</h3>
+                <p class="founder-title">Founder &amp; System Architect</p>
+              </div>
+            </div>
+            <p class="founder-quote">
+              "We take pride in turning ambitious ideas into sub-second, revenue-generating software systems. Reach out directly anytime."
+            </p>
+            <div class="founder-channel-list">
+              <a href="https://wa.me/9779763876490" target="_blank" rel="noopener" class="founder-channel-item">
+                <div class="channel-icon-wrap whatsapp-green">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.588-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-type">Direct WhatsApp &amp; Mobile</span>
+                  <span class="channel-val">+977 9763876490</span>
+                </div>
+                <span class="channel-arrow">&rarr;</span>
+              </a>
+
+              <a href="mailto:viperintelligence1@gmail.com" class="founder-channel-item">
+                <div class="channel-icon-wrap email-cyan">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-type">Direct Official Email</span>
+                  <span class="channel-val">viperintelligence1@gmail.com</span>
+                </div>
+                <span class="channel-arrow">&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Rohan Aacharya Card -->
+          <div class="founder-contact-card mini">
+            <div class="founder-card-header">
+              <div class="team-avatar-wrap" style="width: 58px; height: 58px; margin: 0; flex-shrink: 0;">
+                <div class="avatar-glow"></div>
+                <div class="team-avatar-inner" style="width: 100%; height: 100%;">
+                  <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="35" r="22" fill="#38bdf8"/><path d="M20 90 C20 65 80 65 80 90" fill="#ff6b00"/></svg>
+                </div>
+              </div>
+              <div class="founder-meta">
+                <span class="founder-role-badge">LEAD ENGINEER</span>
+                <h3 class="founder-name">Rohan Aacharya</h3>
+                <p class="founder-title">Co-Founder &amp; Engineering Operations</p>
+              </div>
+            </div>
+            <p class="founder-quote">
+              "Focused on microservice concurrency, high-performance APIs, and rigorous security verification."
+            </p>
+          </div>
+
+          <!-- Office & Presence Info Box -->
+          <div class="contact-details-box">
+            <h4 class="details-box-title">Engineering Headquarters &amp; Operations</h4>
+            <div class="detail-row">
+              <span class="detail-icon">📍</span>
+              <div class="detail-text">
+                <strong>Kathmandu, Nepal</strong>
+                <span>Deploying high-speed software globally for clients across Nepal, USA, UK, Australia &amp; Europe.</span>
+              </div>
+            </div>
+            <div class="detail-row">
+              <span class="detail-icon">⏰</span>
+              <div class="detail-text">
+                <strong>Operational Hours</strong>
+                <span>Monday – Saturday: 9:00 AM – 8:00 PM NPT (UTC+5:45)<br>Emergency SLA Support: 24/7 Available</span>
+              </div>
+            </div>
+            <div class="detail-row">
+              <span class="detail-icon">🛡</span>
+              <div class="detail-text">
+                <strong>Confidentiality &amp; NDA</strong>
+                <span>Every architectural review and discussion is strictly confidential under mutual NDA upon request.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Consultation & Discovery Form -->
+        <div class="contact-form-col">
+          <div class="consultation-form-card">
+            <div class="form-header">
+              <span class="badge-text-emerald">PROJECT INTAKE</span>
+              <h2 class="form-title">Submit Project Specification</h2>
+              <p class="form-desc">Provide your parameters below. You can send this directly via WhatsApp for an immediate response or submit it for an architectural review.</p>
+            </div>
+
+            <form id="consultation-project-form" class="consultation-form">
+              <div class="form-row-two">
+                <div class="form-group">
+                  <label for="contact-name">Your Name / Organization <span class="req">*</span></label>
+                  <input type="text" id="contact-name" name="name" placeholder="e.g. John Doe / Apex Labs" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">Email Address <span class="req">*</span></label>
+                  <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-row-two">
+                <div class="form-group">
+                  <label for="contact-phone">WhatsApp / Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="contact-phone" name="phone" placeholder="+977 98XXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-service">Primary Engineering Requirement <span class="req">*</span></label>
+                  <select id="contact-service" name="service" required>
+                    <option value="" disabled selected>Select a Service Area...</option>
+                    <option value="Full-Stack Web Application">Full-Stack Web Application (Sub-second Edge)</option>
+                    <option value="Native Mobile Suite">Native Mobile App (iOS / Android)</option>
+                    <option value="Interactive 3D WebGL / Cyber Brand">Interactive 3D WebGL / Cyber Experience</option>
+                    <option value="Enterprise Cloud & DevOps">Enterprise Cloud &amp; High-Concurrency DevOps</option>
+                    <option value="Custom Autonomous AI Agent">Custom Autonomous AI Agent / Chatbot</option>
+                    <option value="Startup MVP Rapid Build">Startup MVP Launch (3-5 Days)</option>
+                    <option value="Full Digital Overhaul">Full Digital Overhaul &amp; SEO Migration</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row-two">
+                <div class="form-group">
+                  <label for="contact-budget">Estimated Project Budget</label>
+                  <select id="contact-budget" name="budget">
+                    <option value="Rs 10,000 - Rs 25,000">Rs 10,000 – Rs 25,000 (Startup MVP)</option>
+                    <option value="Rs 25,000 - Rs 50,000" selected>Rs 25,000 – Rs 50,000 (Growth &amp; Scale)</option>
+                    <option value="Rs 50,000 - Rs 100,000">Rs 50,000 – Rs 100,000 (Enterprise Tier)</option>
+                    <option value="Rs 100,000+ / Custom">Rs 100,000+ (High Concurrency &amp; AI Systems)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="contact-timeline">Target Launch Window</label>
+                  <select id="contact-timeline" name="timeline">
+                    <option value="Immediately (Under 1 Week)">Rush / Immediate (&lt; 1 Week)</option>
+                    <option value="1 to 2 Weeks" selected>1 to 2 Weeks</option>
+                    <option value="3 to 4 Weeks">3 to 4 Weeks</option>
+                    <option value="Flexible / Long Term">Flexible / Continuous Development</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Project Goals, Features &amp; Technical Notes <span class="req">*</span></label>
+                <textarea id="contact-message" name="message" rows="4" placeholder="Describe the core features, existing systems, target users, or any technical references..." required></textarea>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="form-submit-actions">
+                <button type="button" id="btn-dispatch-whatsapp" class="btn-whatsapp-dispatch">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.588-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+                  <span>Dispatch via WhatsApp (Fastest)</span>
+                </button>
+                <button type="submit" id="btn-submit-direct" class="btn-submit-project">
+                  <span>Send Architectural Inquiry &rarr;</span>
+                </button>
+              </div>
+
+              <!-- Form Status Feedback Box -->
+              <div id="contact-form-feedback" class="form-feedback-box hidden"></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col footer-brand-col">
+        <a href="index.html" class="brand-logo footer-brand-logo">
+          <div class="logo-icon-wrap footer-logo-wrap">
+            <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Footer Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-text footer-brand-text">
+            <span class="brand-name footer-brand-title">VIPER</span>
+            <span class="brand-sub footer-brand-sub">INTELLIGENCE</span>
+          </div>
+        </a>
+        <p class="footer-bio">
+          Next-generation digital engineering firm specializing in high-performance web applications, native mobile apps, cloud architecture, and autonomous AI systems.
+        </p>
+        <div class="footer-socials">
+          <a href="https://wa.me/9779763876490" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.588-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg></a>
+          <a href="mailto:viperintelligence1@gmail.com" class="social-icon" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="index.html" class="social-icon" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html"><span>&rsaquo;</span> Home</a></li>
+          <li><a href="about.html"><span>&rsaquo;</span> About Us</a></li>
+          <li><a href="projects.html"><span>&rsaquo;</span> Recent Projects</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Our Services</a></li>
+          <li><a href="pricing.html"><span>&rsaquo;</span> Pricing Plans</a></li>
+          <li><a href="contact.html"><span>&rsaquo;</span> Contact Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Our Solutions</h4>
+        <ul class="footer-links-list">
+          <li><a href="services.html"><span>&rsaquo;</span> Web Development</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> App Development</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Managed Web Hosting</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Branding &amp; 3D Assets</a></li>
+          <li><a href="services.html#calculator"><span>&rsaquo;</span> Cost Estimator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-newsletter-col">
+        <h4 class="footer-title">Stay Connected</h4>
+        <p class="newsletter-sub">Subscribe to our newsletter for exclusive tech updates &amp; digital insights.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Enter your email..." required>
+          <button type="submit" aria-label="Subscribe">Join</button>
+        </form>
+        <div class="footer-founders-badge">
+          <span>🚀 Lead Founders: Subash Bhandari &amp; Rohan Aacharya</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 <strong>VIPER INTELLIGENCE</strong>. Engineered for High Performance. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <span class="dot-sep">•</span>
+          <a href="terms.html">Terms of Service</a>
+          <span class="dot-sep">•</span>
+          <a href="https://wa.me/9779763876490" target="_blank" rel="noopener">WhatsApp Direct</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Direct WhatsApp Quick-Booking FAB (Pinned Bottom-Left) -->
+  <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20am%20interested%20in%20booking%20a%20consultation%20with%20Viper%20Intelligence." class="floating-whatsapp-fab" id="floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Message to Subash Bhandari" data-open-booking-modal>
+    <div class="whatsapp-fab-icon-wrap">
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      <span class="pulse-online"></span>
+    </div>
+    <div class="whatsapp-fab-label">
+      <span class="fab-sub">SUBASH • ONLINE</span>
+      <span class="fab-main">Book on WhatsApp</span>
+    </div>
+  </a>
+
+  <!-- Universal 1-Click WhatsApp Booking Modal -->
+  <div id="whatsapp-booking-modal" class="whatsapp-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="whatsapp-modal-card">
+      <button class="whatsapp-modal-close" id="whatsapp-modal-close" aria-label="Close modal">&times;</button>
+      <div class="whatsapp-modal-header">
+        <span class="modal-badge"><span class="pulse-green"></span> SUBASH BHANDARI • ONLINE</span>
+        <h3>Direct WhatsApp Project Booking</h3>
+        <p>Connect immediately with Lead Architect Subash Bhandari. Select your requirements below to generate an instant project specification payload.</p>
+      </div>
+      <form id="whatsapp-booking-form" class="whatsapp-booking-form">
+        <div class="form-group">
+          <label for="wa-client-name">YOUR NAME / COMPANY</label>
+          <input type="text" id="wa-client-name" placeholder="e.g. John Doe / Apex Corp" required>
+        </div>
+        <div class="form-group">
+          <label for="wa-service-type">SERVICE OF INTEREST</label>
+          <select id="wa-service-type" required>
+            <option value="Full-Stack Web Application (React / Next.js)">Full-Stack Web Application (React / Next.js)</option>
+            <option value="Native Mobile Suite (iOS & Android)">Native Mobile Suite (iOS & Android)</option>
+            <option value="Managed Cloud Hosting & Edge CDN">Managed Cloud Hosting & Edge CDN</option>
+            <option value="Brand Identity, 3D Assets & UI/UX">Brand Identity, 3D Assets & UI/UX</option>
+            <option value="Enterprise Architecture & Security Audit">Enterprise Architecture & Security Audit</option>
+            <option value="Custom Software Development">Custom Software Development</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-budget-tier">ESTIMATED BUDGET TIER</label>
+          <select id="wa-budget-tier" required>
+            <option value="Startup Launch (Rs 10,000)">Startup Launch (Rs 10,000)</option>
+            <option value="Scale & Business (Rs 30,000)" selected>Scale & Business (Rs 30,000)</option>
+            <option value="Enterprise Custom (Rs 50,000+)">Enterprise Custom (Rs 50,000+)</option>
+            <option value="Flexible / Hourly Architecture Consultation">Flexible / Hourly Architecture Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-timeline">TARGET TIMELINE</label>
+          <select id="wa-timeline">
+            <option value="Immediate (< 7 Days)">Immediate (&lt; 7 Days)</option>
+            <option value="Standard Sprint (2 - 4 Weeks)" selected>Standard Sprint (2 - 4 Weeks)</option>
+            <option value="Comprehensive Build (1 - 2 Months)">Comprehensive Build (1 - 2 Months)</option>
+            <option value="Planning / Exploratory Phase">Planning / Exploratory Phase</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-project-notes">PROJECT BRIEF / GOALS (OPTIONAL)</label>
+          <textarea id="wa-project-notes" rows="3" placeholder="Tell Subash about your project vision, target audience, or reference links..."></textarea>
+        </div>
+        <button type="submit" class="btn-dispatch-modal-whatsapp" id="btn-submit-whatsapp-booking">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Send Instant WhatsApp Message to Subash &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Universal Script Setup -->
+  <script src="main.js?v=4.0"></script>
+</body>
+</html>

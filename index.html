@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Viper Intelligence — Enterprise AI systems, 3D web development, mobile app development, branding, and digital growth platforms.">
+  <title>Viper Intelligence — Digital Solutions & 3D Software Engineering</title>
+
+  <!-- Google Fonts: Orbitron, Outfit, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=4.0">
+
+  <!-- Universal Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="dark-semester-theme">
+
+  <!-- FUTURISTIC SCI-FI PRELOADER SCREEN -->
+  <div id="site-preloader" class="site-preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo-wrap">
+        <div class="logo-glow-aura"></div>
+        <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Preloader Logo" class="preloader-logo-img">
+      </div>
+
+      <div class="preloader-brand-title">
+        <span class="brand-viper">VIPER</span>
+        <span class="brand-intel">INTELLIGENCE</span>
+      </div>
+
+      <div class="preloader-tagline">SOFTWARE ENGINEERING & AI SYSTEMS</div>
+
+      <!-- Sci-Fi Progress Meter -->
+      <div class="preloader-progress-box">
+        <div class="preloader-bar-bg">
+          <div id="preloader-fill" class="preloader-fill"></div>
+        </div>
+        <div class="preloader-status-row">
+          <span id="preloader-status-text" class="status-text">INITIALIZING VIPER CORE SYSTEM...</span>
+          <span id="preloader-percent" class="percent-text">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Binary Matrix Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- Ambient Background Watermark Emblem -->
+  <div class="background-watermark">
+    <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Background Emblem" class="watermark-logo-img">
+  </div>
+
+  <!-- Floating FAB to Reopen VIPER BOT (Docked neatly in corner) -->
+  <button id="reopen-bot-btn" class="reopen-bot-fab" title="Open VIPER AI Assistant">
+    <span class="pulse-green"></span>
+    <span>🤖 VIPER AI</span>
+  </button>
+
+  <!-- Fixed Floating Sticky 3D AI Robot Guide Viewport (Minimized by default) -->
+  <div id="sticky-3d-viewport" class="minimized">
+    <div id="robot-speech-bubble" class="robot-speech-bubble">
+      <div class="speech-header">
+        <div class="header-left">
+          <span class="pulse-green"></span>
+          <span class="bot-name">VIPER AI (ALEX)</span>
+        </div>
+        <div class="speech-header-actions">
+          <button id="toggle-chat-box-btn" class="toggle-chat-btn" title="Toggle Live Chat Window">💬 Chat</button>
+          <button id="close-bot-bubble-btn" class="close-chat-btn" title="Minimize Assistant Window" aria-label="Minimize Assistant">&times;</button>
+        </div>
+      </div>
+
+      <!-- Chat Messages Scroll Container -->
+      <div id="bot-chat-messages" class="bot-chat-messages">
+        <div class="chat-msg bot-msg">
+          👋 Hello! I am VIPER BOT (Alex). How can I assist you with your software development goals today?
+        </div>
+      </div>
+      
+      <!-- Interactive Voice Topic Action Buttons -->
+      <div class="robot-quick-actions" id="robot-quick-actions">
+        <button class="bot-action-btn" data-action="services">💼 Services</button>
+        <button class="bot-action-btn" data-action="projects">🚀 Projects</button>
+        <button class="bot-action-btn" data-action="pricing">💎 Pricing</button>
+        <button class="bot-action-btn" data-action="contact">📞 Contact</button>
+        <button class="bot-action-btn" data-action="whatsapp" style="border-color: rgba(16, 185, 129, 0.6); color: #10b981;">💬 WhatsApp</button>
+      </div>
+
+      <!-- Live Interactive Chat Input Form -->
+      <form id="bot-chat-form" class="bot-chat-input-row">
+        <input type="text" id="bot-chat-input" placeholder="Type a message to VIPER BOT..." required autocomplete="off">
+        <button type="submit" id="bot-send-btn" class="bot-send-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div id="cube-canvas-container"></div>
+
+    <div class="cube-hint">
+      🤖 VIPER BOT — Autonomous AI Companion
+    </div>
+  </div>
+
+  <!-- Header Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon-wrap">
+          <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">VIPER</span>
+          <span class="brand-sub">INTELLIGENCE</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html" class="nav-link active">HOME</a>
+        <a href="services.html" class="nav-link">SERVICES</a>
+        <a href="projects.html" class="nav-link">PROJECTS</a>
+        <a href="about.html" class="nav-link">ABOUT</a>
+        <a href="pricing.html" class="nav-link">PRICING</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20want%20to%20book%20a%20project%20consultation%20with%20Viper%20Intelligence." class="btn-whatsapp-nav" target="_blank" rel="noopener noreferrer" data-open-booking-modal aria-label="Book on WhatsApp with Subash">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Book on WhatsApp</span>
+        </a>
+        <a href="contact.html" class="btn-contact-nav">Contact Us</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-badge-live">
+          <span class="pulse-green"></span>
+          <span class="badge-text-mono">PRODUCTION ENGINEERING LAB • KATHMANDU</span>
+        </div>
+
+        <div class="hero-title-group">
+          <h1 class="hero-main-title">
+            Software Engineered to <br>
+            <span class="viper-brand-glow">NEVER CRASH</span> <br class="mobile-break"><span class="highlight-tech-badge">UNDER SCALE</span>
+          </h1>
+        </div>
+
+        <p class="hero-subtitle">
+          We architect sub-second edge applications, native mobile suites, and distributed cloud backends with guaranteed 99.99% availability SLAs. Founded &amp; engineered by <strong>Subash Bhandari</strong> &amp; <strong>Rohan Aacharya</strong> — direct access to lead architects, zero template bloat.
+        </p>
+
+        <div class="hero-cta-wrapper">
+          <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20want%20to%20book%20a%20project%20directly%20with%20Viper%20Intelligence." class="btn-whatsapp-hero" target="_blank" rel="noopener noreferrer" data-open-booking-modal>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            <span>Book on WhatsApp &rarr;</span>
+          </a>
+          <a href="contact.html" class="btn-primary-orange">
+            <span>Consultation Portal</span>
+          </a>
+          <a href="services.html#calculator" class="btn-hero-calc">
+            <span>⚡ Cost Calculator</span>
+          </a>
+        </div>
+
+        <!-- Telemetry Ribbon -->
+        <div class="telemetry-bar">
+          <div class="telemetry-item">
+            <span class="t-dot pulse-green"></span>
+            <span class="t-label">EDGE P99:</span>
+            <span class="t-val">&lt; 120ms</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="t-dot pulse-cyan"></span>
+            <span class="t-label">UPTIME SLA:</span>
+            <span class="t-val">99.99%</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="t-dot pulse-orange"></span>
+            <span class="t-label">CORE WEB VITALS:</span>
+            <span class="t-val">100/100</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="t-dot pulse-green"></span>
+            <span class="t-label">GIT IP RIGHTS:</span>
+            <span class="t-val">100% Handover</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Right Column: Interactive 3D Holographic Tech Core Cube -->
+      <div class="hero-right">
+        <div class="hero-3d-card-wrap">
+          <div id="hero-cube-container"></div>
+          
+          <div class="cube-interactive-tag">
+            <span class="pulse-green"></span>
+            <span>3D CAPABILITY MATRIX &bull; Drag to Rotate &bull; 6 Core Services</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Developer Workbench & CLI -->
+  <section class="workbench-section" id="workbench">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="badge-text-cyan">LIVE DEVELOPER WORKBENCH</span>
+        <h2>Test Our Production Pipeline</h2>
+        <p>Click commands below to simulate real edge builds, latency benchmarks, and system verification.</p>
+      </div>
+
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-tabs" id="terminal-tabs">
+            <button class="t-tab active" data-tab="cli">&gt;_ viper-cli.sh</button>
+            <button class="t-tab" data-tab="arch">{} architecture.config.ts</button>
+            <button class="t-tab" data-tab="logs">📊 edge-telemetry.log</button>
+          </div>
+          <div class="terminal-badge">LIVE RUNTIME: EDGE NODE #01</div>
+        </div>
+
+        <div class="terminal-body">
+          <!-- CLI Interactive Tab Pane -->
+          <div class="terminal-tab-pane active" id="pane-cli">
+            <div class="terminal-quick-actions">
+              <span class="quick-title">Quick Commands:</span>
+              <button class="btn-cli-cmd" data-cmd="deploy">⚡ viper deploy --prod</button>
+              <button class="btn-cli-cmd" data-cmd="benchmark">📊 viper benchmark</button>
+              <button class="btn-cli-cmd" data-cmd="stack">📦 viper stack --inspect</button>
+              <button class="btn-cli-cmd" data-cmd="founders">👥 viper team --verify</button>
+            </div>
+            <div class="terminal-screen" id="terminal-screen">
+              <div class="terminal-line prompt-line">
+                <span class="t-host">subash@viper-edge</span>:<span class="t-dir">~/production</span>$ <span class="t-cmd-active">viper deploy --prod</span>
+              </div>
+              <div class="terminal-line"><span class="t-success">✔</span> Initializing Next.js 15 Turbopack compilation...</div>
+              <div class="terminal-line"><span class="t-success">✔</span> Inlining Three.js WebGL GPU shaders &amp; matrix physics...</div>
+              <div class="terminal-line"><span class="t-success">✔</span> Running automated test suite: 42/42 tests passed in 128ms.</div>
+              <div class="terminal-line"><span class="t-success">✔</span> Propagating release to 310+ Cloudflare Edge POPs globally.</div>
+              <div class="terminal-line highlight"><span class="t-cyan">🚀 PRODUCTION RELEASE v4.2 DEPLOYED IN 0.38s (P99: 112ms)</span></div>
+              <div class="terminal-line prompt-line blink-line">
+                <span class="t-host">subash@viper-edge</span>:<span class="t-dir">~/production</span>$ <span class="terminal-cursor">█</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architecture Config Tab Pane -->
+          <div class="terminal-tab-pane" id="pane-arch">
+            <pre class="code-preview"><code><span class="c-keyword">import</span> { <span class="c-type">ViperArchitecture</span> } <span class="c-keyword">from</span> <span class="c-str">'@viper/core'</span>;
+
+<span class="c-comment">// Enterprise Edge Stack Configuration</span>
+<span class="c-keyword">export const</span> <span class="c-func">productionStack</span> = <span class="c-func">ViperArchitecture</span>.<span class="c-func">create</span>({
+  frontend: {
+    framework: <span class="c-str">'Next.js 15 (Serverless Edge SSR)'</span>,
+    graphics: <span class="c-str">'Three.js WebGL (Retina Shaders)'</span>,
+    styling: <span class="c-str">'Tailwind CSS + Obsidian Design Tokens'</span>,
+    coreWebVitals: { lcp: <span class="c-str">'0.4s'</span>, cls: <span class="c-num">0</span>, fid: <span class="c-str">'2ms'</span> }
+  },
+  backend: {
+    runtime: <span class="c-str">'Go Microservices + Node.js Edge Workers'</span>,
+    database: <span class="c-str">'PostgreSQL + Redis Global Read-Replicas'</span>,
+    concurrencyTarget: <span class="c-str">'100,000+ Concurrent Requests'</span>
+  },
+  security: {
+    waf: <span class="c-str">'Zero-Trust Cloudflare Shield'</span>,
+    encryption: <span class="c-str">'TLS 1.3 + ChaCha20-Poly1305'</span>,
+    sourceOwnership: <span class="c-str">'100% Client Git Transfer Guaranteed'</span>
+  }
+});</code></pre>
+          </div>
+
+          <!-- Telemetry Log Tab Pane -->
+          <div class="terminal-tab-pane" id="pane-logs">
+            <div class="log-stream-box" id="log-stream-box">
+              <div class="log-entry"><span class="log-time">[18:42:01.124]</span> <span class="log-tag tag-edge">EDGE-SGP</span> 200 OK &mdash; GET /api/v1/telemetry (32ms) &mdash; CDN CACHE HIT</div>
+              <div class="log-entry"><span class="log-time">[18:42:01.350]</span> <span class="log-tag tag-waf">SHIELD</span> WAF Verification Passed &mdash; Zero malicious payloads detected</div>
+              <div class="log-entry"><span class="log-time">[18:42:01.588]</span> <span class="log-tag tag-db">REDIS</span> Cache Cluster Sync &mdash; 0.4ms latency &mdash; 99.999% availability</div>
+              <div class="log-entry"><span class="log-time">[18:42:01.890]</span> <span class="log-tag tag-edge">EDGE-LHR</span> 200 OK &mdash; GET /services/calculator (44ms) &mdash; CDN CACHE HIT</div>
+              <div class="log-entry"><span class="log-time">[18:42:02.100]</span> <span class="log-tag tag-sys">KERNEL</span> Worker thread pool healthy &mdash; Memory usage: 48MB / 512MB allocated</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Architecture Stack Inspector -->
+  <section class="architecture-section" id="architecture">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="badge-text-cyan">SYSTEM BLUEPRINTS</span>
+        <h2>Explore Our 4 Engineering Disciplines</h2>
+        <p>Switch tabs to inspect the real code, latency budgets, and infrastructure patterns we deploy.</p>
+      </div>
+
+      <div class="arch-tabs-nav" id="arch-tabs-nav">
+        <button class="arch-tab-btn active" data-discipline="frontend">⚡ 01. Edge Frontend &amp; 3D WebGL</button>
+        <button class="arch-tab-btn" data-discipline="backend">🚀 02. High-Concurrency Backend</button>
+        <button class="arch-tab-btn" data-discipline="ai">🤖 03. Autonomous AI &amp; Vectors</button>
+        <button class="arch-tab-btn" data-discipline="devops">🛡️ 04. Cloud Infrastructure &amp; WAF</button>
+      </div>
+
+      <div class="arch-display-card" id="arch-display-card">
+        <div class="arch-grid">
+          <div class="arch-info-col">
+            <span class="modal-category-tag" id="arch-card-category">CLIENT-SIDE PERFORMANCE</span>
+            <h3 id="arch-card-title">Serverless Edge SSR &amp; Three.js Graphics</h3>
+            <p id="arch-card-desc">
+              We eliminate sluggish client bundles by pre-rendering dynamic routes on edge workers and running GPU-accelerated Three.js shaders on independent threads.
+            </p>
+            <div class="arch-metrics-list" id="arch-card-metrics">
+              <div class="arch-metric-item">
+                <span class="m-title">Largest Contentful Paint</span>
+                <span class="m-val">&lt; 0.45s</span>
+              </div>
+              <div class="arch-metric-item">
+                <span class="m-title">Rendering Frame Budget</span>
+                <span class="m-val">60 FPS Locked</span>
+              </div>
+              <div class="arch-metric-item">
+                <span class="m-title">Bundle Overhead</span>
+                <span class="m-val">&lt; 45KB Gzipped</span>
+              </div>
+              <div class="arch-metric-item">
+                <span class="m-title">Lighthouse Score</span>
+                <span class="m-val">100 / 100</span>
+              </div>
+            </div>
+            <a href="services.html" class="btn-primary-orange" style="display: inline-flex; width: auto; padding: 12px 24px;">
+              <span>View Full Service Specifications &rarr;</span>
+            </a>
+          </div>
+
+          <div class="arch-code-col">
+            <pre class="code-preview"><code id="arch-code-snippet"><span class="c-comment">// Edge-rendered high-speed route</span>
+<span class="c-keyword">export const</span> runtime = <span class="c-str">'edge'</span>;
+<span class="c-keyword">export const</span> revalidate = <span class="c-num">60</span>;
+
+<span class="c-keyword">export default async function</span> <span class="c-func">Page</span>() {
+  <span class="c-keyword">const</span> data = <span class="c-keyword">await</span> <span class="c-func">getEdgeCache</span>();
+  <span class="c-keyword">return</span> &lt;<span class="c-type">QuantumRenderer</span> assets={data} /&gt;;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagnostic Benchmark Matrix -->
+  <section class="benchmark-section" id="benchmark">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="badge-text-cyan">PERFORMANCE AUDIT</span>
+        <h2>Legacy Agencies vs. Viper Intelligence</h2>
+        <p>Hard metrics that demonstrate why ambitious businesses choose our engineering squad.</p>
+      </div>
+
+      <div class="benchmark-table-card">
+        <table class="benchmark-table">
+          <thead>
+            <tr>
+              <th>Performance Dimension</th>
+              <th>Generic Agency / AI Generators</th>
+              <th class="viper-lead-col">Viper Intelligence Engineering</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Time To First Byte (TTFB)</strong></td>
+              <td>1,200ms – 3,400ms (Bloated templates)</td>
+              <td class="viper-lead-col"><strong>&lt; 45ms (Sub-second Edge SSR)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Mobile Lighthouse Score</strong></td>
+              <td>35 – 55 (Fails Google Core Web Vitals)</td>
+              <td class="viper-lead-col"><strong>98 – 100 (Instant mobile indexation)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>System Concurrency Limit</strong></td>
+              <td>Stalls at ~250 simultaneous visitors</td>
+              <td class="viper-lead-col"><strong>100,000+ Requests / Sec Handled</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Source Code &amp; IP Ownership</strong></td>
+              <td>Proprietary CMS lock-in / recurring rents</td>
+              <td class="viper-lead-col"><strong>100% Full Git Repository &amp; IP Handover</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Founder Engineering Access</strong></td>
+              <td>Junior ticket handlers &amp; account managers</td>
+              <td class="viper-lead-col"><strong>Direct WhatsApp with Subash &amp; Rohan</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Featured Recent Projects Section (Client Showcase) -->
+  <section class="gallery-section" id="projects">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="badge-text-cyan">OUR RECENT PROJECTS</span>
+        <h2>Featured Live Deliverables</h2>
+        <p>Explore recent production web platforms engineered by Viper Intelligence.</p>
+      </div>
+
+      <div class="recent-projects-grid">
+        <!-- Project 1: Master IELTS AI -->
+        <div class="project-showcase-card">
+          <div class="project-img-preview ielts-bg">
+            <div class="project-badge-tag">AI & EDTECH</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> LIVE PLATFORM</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Master IELTS AI</h3>
+            <p class="project-subhead">Master IELTS with Artificial Intelligence</p>
+            <p class="project-desc">Practice Speaking, Writing, Reading & Listening with real-time AI feedback. Personalized study plans and instant band score evaluation.</p>
+            <div class="project-meta-pills">
+              <span>Artificial Intelligence</span><span>EdTech</span><span>Live Feedback</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://masterieltsai.com" target="_blank" rel="noopener" class="btn-visit-project">
+                <span>Visit masterieltsai.com</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Cafe / Specialty Coffee -->
+        <div class="project-showcase-card">
+          <div class="project-img-preview cafe-bg">
+            <div class="project-badge-tag">HOSPITALITY & CAFE</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> LIVE PLATFORM</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Crafted Coffee & Cafe</h3>
+            <p class="project-subhead">Crafted Coffee. Shared Moments.</p>
+            <p class="project-desc">Award-winning specialty coffee & seasonal brunch booking portal. Features seasonal menu displays, barista stories, and instant table reservation.</p>
+            <div class="project-meta-pills">
+              <span>Culinary UX</span><span>Table Booking</span><span>Responsive Web</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://subash-hello.github.io/cafe/" target="_blank" rel="noopener" class="btn-visit-project">
+                <span>Visit subash-hello.github.io/cafe/</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Dental Help / Angel Family Dentistry -->
+        <div class="project-showcase-card">
+          <div class="project-img-preview dental-bg">
+            <div class="project-badge-tag">HEALTHCARE & MEDICAL</div>
+            <div class="project-live-indicator"><span class="pulse-green"></span> LIVE PLATFORM</div>
+          </div>
+          <div class="project-card-body">
+            <h3>Angel Family Dentistry</h3>
+            <p class="project-subhead">Let's Bring Back The Smile to Your Face!</p>
+            <p class="project-desc">Comprehensive dental healthcare appointment booking platform with live ratings, service exploration, and online patient care schedules.</p>
+            <div class="project-meta-pills">
+              <span>Healthcare UX</span><span>Appointment Portal</span><span>Patient Ratings</span>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://dental-help.vercel.app" target="_blank" rel="noopener" class="btn-visit-project">
+                <span>Visit dental-help.vercel.app</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-more-cta-wrap">
+        <a href="projects.html" class="btn-primary-orange btn-section-cta">
+          <span>Explore All 9+ Production Deliverables &amp; Filter &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="badge-text-cyan">WHAT WE OFFER</span>
+        <h2>Our Core Engineering & Digital Services</h2>
+        <p>End-to-end technological excellence tailored for startups and global enterprises.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Web Development</h3>
+          <p>Custom dynamic web platforms built with React, Next.js, and high-speed Node servers.</p>
+          <a href="#contact" class="service-link">Explore Service &rarr;</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>App Development</h3>
+          <p>Native iOS & Android mobile apps engineered for speed, fluid motion, and offline sync.</p>
+          <a href="#contact" class="service-link">Explore Service &rarr;</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <h3>Web Hosting & Cloud</h3>
+          <p>High-availability cloud servers, automated backups, SSL certificates, and 99.99% uptime.</p>
+          <a href="#contact" class="service-link">Explore Service &rarr;</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <h3>Branding & Design</h3>
+          <p>Comprehensive identity packages, 3D assets, logos, and UI component systems.</p>
+          <a href="#contact" class="service-link">Explore Service &rarr;</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <h3>Digital Marketing</h3>
+          <p>Data-driven SEO, Google Ads campaigns, and social media growth strategies.</p>
+          <a href="#contact" class="service-link">Explore Service &rarr;</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Cyber Security Mesh</h3>
+          <p>Proactive vulnerability assessments, API endpoint protection, and data encryption.</p>
+          <a href="#contact" class="service-link">Explore Service &rarr;</a>
+        </div>
+      </div>
+
+      <div class="view-more-cta-wrap">
+        <a href="services.html" class="btn-primary-orange btn-section-cta">
+          <span>Detailed Services &amp; Architecture &rarr;</span>
+        </a>
+        <a href="services.html#calculator" class="btn-hero-calc btn-section-cta">
+          <span>⚡ Interactive Project Cost Calculator &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section" id="team">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="badge-text-cyan">THE CREW</span>
+        <h2>Meet Our Tech Visionaries</h2>
+        <p>Engineers, designers, and autonomous AI architects behind Viper Intelligence.</p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Team Member 1: Subash Bhandari -->
+        <div class="team-card">
+          <div class="team-avatar-wrap">
+            <div class="avatar-glow"></div>
+            <div class="team-avatar-inner">
+              <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="35" r="22" fill="#ff6b00"/><path d="M20 90 C20 65 80 65 80 90" fill="#10b981"/></svg>
+            </div>
+          </div>
+          <h3>Subash Bhandari</h3>
+          <span class="team-role">Founder & Lead Architect</span>
+          <p>Visionary software engineer specializing in full-stack platforms, cloud systems, & AI integration.</p>
+        </div>
+
+        <!-- Team Member 2: Rohan Aacharya -->
+        <div class="team-card">
+          <div class="team-avatar-wrap">
+            <div class="avatar-glow"></div>
+            <div class="team-avatar-inner">
+              <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="35" r="22" fill="#38bdf8"/><path d="M20 90 C20 65 80 65 80 90" fill="#8b5cf6"/></svg>
+            </div>
+          </div>
+          <h3>Rohan Aacharya</h3>
+          <span class="team-role">Co-Founder & Lead Engineer</span>
+          <p>Expert in scalable web architecture, native mobile suites, and high-concurrency cloud backends.</p>
+        </div>
+
+        <!-- Team Member 3: Alex (VIPER BOT) -->
+        <div class="team-card">
+          <div class="team-avatar-wrap">
+            <div class="avatar-glow"></div>
+            <div class="team-avatar-inner">
+              <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="35" r="22" fill="#10b981"/><path d="M20 90 C20 65 80 65 80 90" fill="#ff6b00"/></svg>
+            </div>
+          </div>
+          <h3>Alex (VIPER BOT)</h3>
+          <span class="team-role">Autonomous AI Assistant</span>
+          <p>Interactive 3D WebGL AI companion guiding client exploration, voice talk, & section navigation.</p>
+        </div>
+      </div>
+
+      <div class="view-more-cta-wrap">
+        <a href="about.html" class="btn-primary-orange btn-section-cta">
+          <span>Meet Full Engineering Squad, Tech Radar &amp; 5-Step Process &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="badge-text-cyan">TRANSPARENT PRICING</span>
+        <h2>Plans Built For Growth</h2>
+        <p>Flexible packages for startups, growing companies, and enterprise scale.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Startup Launch</h3>
+            <div class="pricing-cost">Rs 10,000<span>/project</span></div>
+            <p>Perfect for early stage startups launching their initial web presence.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Custom 5-Page Responsive Web App</li>
+            <li>✓ Mobile-first React / Next.js implementation</li>
+            <li>✓ Basic SEO & Google Analytics setup</li>
+            <li>✓ 1 Month Free Hosting & SSL</li>
+          </ul>
+          <a href="contact.html?plan=startup" class="btn-pricing">Choose Startup Plan</a>
+        </div>
+
+        <div class="pricing-card popular">
+          <div class="popular-badge">RECOMMENDED</div>
+          <div class="pricing-header">
+            <h3>Scale & Business</h3>
+            <div class="pricing-cost">Rs 30,000<span>/project</span></div>
+            <p>Comprehensive solution with web, mobile app, and backend APIs.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Dynamic Web Portal + iOS/Android App</li>
+            <li>✓ Custom 3D Interactive WebGL Graphics</li>
+            <li>✓ API Backend with Database Sync</li>
+            <li>✓ 6 Months Dedicated Managed Cloud Hosting</li>
+            <li>✓ 24/7 Priority Technical Support</li>
+          </ul>
+          <a href="contact.html?plan=scale" class="btn-pricing-orange">Scale My Business &rarr;</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Enterprise Custom</h3>
+            <div class="pricing-cost">Rs 50,000+<span>/custom</span></div>
+            <p>Tailored engineering team, zero-trust security, and cloud infrastructure.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Dedicated Engineering Squad</li>
+            <li>✓ Microservice & Multi-tenant Architecture</li>
+            <li>✓ SLA Guarantee with 99.99% Uptime</li>
+            <li>✓ Custom Brand Identity & 3D Assets</li>
+          </ul>
+          <a href="contact.html?plan=enterprise" class="btn-pricing">Request Custom Build</a>
+        </div>
+      </div>
+
+      <div class="view-more-cta-wrap">
+        <a href="pricing.html" class="btn-primary-orange btn-section-cta">
+          <span>Compare Full Technical Feature Matrix &amp; FAQ &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-container">
+      <div class="contact-grid">
+        <div class="contact-info-col">
+          <span class="badge-text-cyan">GET IN TOUCH</span>
+          <h2>Let's build something extraordinary together.</h2>
+          <p>Have a project in mind or want to go online with Viper Intelligence? Send us a message directly to Subash Bhandari on WhatsApp!</p>
+
+          <div class="info-details-list">
+            <div class="info-item">
+              <div class="info-icon">👤</div>
+              <div>
+                <h4>Lead Architect</h4>
+                <p>Subash Bhandari</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">📧</div>
+              <div>
+                <h4>Official Email</h4>
+                <p><a href="mailto:viperintelligence1@gmail.com" style="color: var(--text-main); text-decoration: none;">viperintelligence1@gmail.com</a></p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">💬</div>
+              <div>
+                <h4>Direct WhatsApp / Phone</h4>
+                <p><a href="https://wa.me/9779763876490" target="_blank" rel="noopener" style="color: #10b981; font-weight: 700; text-decoration: none;">+977 9763876490</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-col">
+          <form class="glass-form" id="contact-form">
+            <h3>Send Message (Direct to WhatsApp)</h3>
+            
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" required placeholder="john@company.com">
+            </div>
+
+            <div class="form-group">
+              <label for="service">Interested Service</label>
+              <select id="service">
+                <option value="Web Development (Rs 10k - 30k)">Web Development</option>
+                <option value="Mobile App Development">Mobile App Development</option>
+                <option value="Web Hosting & Cloud">Web Hosting & Cloud</option>
+                <option value="Branding & Graphics Design">Branding & Graphics Design</option>
+                <option value="Digital Marketing">Digital Marketing</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Project Description</label>
+              <textarea id="message" rows="4" required placeholder="Tell us about your project goals, timeline, and requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit-orange">
+              <span>Send Message to Subash on WhatsApp</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+
+            <div class="form-status" id="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ULTRA-PREMIUM PERFECTLY ALIGNED FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Column 1: Brand & Slogan -->
+      <div class="footer-col footer-brand-col">
+        <a href="index.html" class="brand-logo footer-brand-logo">
+          <div class="logo-icon-wrap footer-logo-wrap">
+            <img src="assets/viper_trident_transparent.png" alt="Viper Intelligence Transparent Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-text footer-brand-text">
+            <span class="brand-name footer-brand-title">VIPER</span>
+            <span class="brand-sub footer-brand-sub">INTELLIGENCE</span>
+          </div>
+        </a>
+        <p class="footer-tagline">
+          Empowering startups & enterprise brands with cutting-edge web, mobile, and digital growth platforms.
+        </p>
+
+        <div class="footer-contact-pills">
+          <a href="https://wa.me/9779763876490" target="_blank" rel="noopener" class="footer-pill-item">
+            <span class="pill-icon">💬</span>
+            <span>+977 9763876490</span>
+          </a>
+          <a href="mailto:viperintelligence1@gmail.com" class="footer-pill-item">
+            <span class="pill-icon">📧</span>
+            <span>viperintelligence1@gmail.com</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html"><span>&rsaquo;</span> Home</a></li>
+          <li><a href="about.html"><span>&rsaquo;</span> About Us</a></li>
+          <li><a href="projects.html"><span>&rsaquo;</span> Recent Projects</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Our Services</a></li>
+          <li><a href="pricing.html"><span>&rsaquo;</span> Pricing Plans</a></li>
+          <li><a href="contact.html"><span>&rsaquo;</span> Contact Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Services Offered -->
+      <div class="footer-col">
+        <h4 class="footer-title">Our Solutions</h4>
+        <ul class="footer-links-list">
+          <li><a href="services.html"><span>&rsaquo;</span> Web Development</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> App Development</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Managed Web Hosting</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Branding & 3D Assets</a></li>
+          <li><a href="services.html"><span>&rsaquo;</span> Project Cost Calculator</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Newsletter & Direct Inquiry -->
+      <div class="footer-col footer-newsletter-col">
+        <h4 class="footer-title">Stay Connected</h4>
+        <p class="newsletter-sub">Subscribe to our newsletter for exclusive tech updates & digital insights.</p>
+
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Enter your email..." required>
+          <button type="submit" aria-label="Subscribe">Join</button>
+        </form>
+
+        <div class="footer-founders-badge">
+          <span>🚀 Lead Founders: Subash Bhandari & Rohan Aacharya</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom Copyright Bar -->
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-container">
+        <p>&copy; 2026 <strong>VIPER INTELLIGENCE</strong>. Engineered for High Performance. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <span class="dot-sep">•</span>
+          <a href="terms.html">Terms of Service</a>
+          <span class="dot-sep">•</span>
+          <a href="https://wa.me/9779763876490" target="_blank" rel="noopener">WhatsApp Direct</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Direct WhatsApp Quick-Booking FAB (Pinned Bottom-Left) -->
+  <a href="https://wa.me/9779763876490?text=Hi%20Subash%2C%20I%20am%20interested%20in%20booking%20a%20software%20project%20with%20Viper%20Intelligence." class="floating-whatsapp-fab" id="floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Message to Subash Bhandari" data-open-booking-modal>
+    <div class="whatsapp-fab-icon-wrap">
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      <span class="pulse-online"></span>
+    </div>
+    <div class="whatsapp-fab-label">
+      <span class="fab-sub">SUBASH • ONLINE</span>
+      <span class="fab-main">Book on WhatsApp</span>
+    </div>
+  </a>
+
+  <!-- Universal 1-Click WhatsApp Booking Modal -->
+  <div id="whatsapp-booking-modal" class="whatsapp-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="whatsapp-modal-card">
+      <button class="whatsapp-modal-close" id="whatsapp-modal-close" aria-label="Close modal">&times;</button>
+      <div class="whatsapp-modal-header">
+        <span class="modal-badge"><span class="pulse-green"></span> SUBASH BHANDARI • ONLINE</span>
+        <h3>Direct WhatsApp Project Booking</h3>
+        <p>Connect immediately with Lead Architect Subash Bhandari. Select your requirements below to generate an instant project specification payload.</p>
+      </div>
+      <form id="whatsapp-booking-form" class="whatsapp-booking-form">
+        <div class="form-group">
+          <label for="wa-client-name">YOUR NAME / COMPANY</label>
+          <input type="text" id="wa-client-name" placeholder="e.g. John Doe / Apex Corp" required>
+        </div>
+        <div class="form-group">
+          <label for="wa-service-type">SERVICE OF INTEREST</label>
+          <select id="wa-service-type" required>
+            <option value="Full-Stack Web Application (React / Next.js)">Full-Stack Web Application (React / Next.js)</option>
+            <option value="Native Mobile Suite (iOS & Android)">Native Mobile Suite (iOS & Android)</option>
+            <option value="Managed Cloud Hosting & Edge CDN">Managed Cloud Hosting & Edge CDN</option>
+            <option value="Brand Identity, 3D Assets & UI/UX">Brand Identity, 3D Assets & UI/UX</option>
+            <option value="Enterprise Architecture & Security Audit">Enterprise Architecture & Security Audit</option>
+            <option value="Custom Software Development">Custom Software Development</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-budget-tier">ESTIMATED BUDGET TIER</label>
+          <select id="wa-budget-tier" required>
+            <option value="Startup Launch (Rs 10,000)">Startup Launch (Rs 10,000)</option>
+            <option value="Scale & Business (Rs 30,000)" selected>Scale & Business (Rs 30,000)</option>
+            <option value="Enterprise Custom (Rs 50,000+)">Enterprise Custom (Rs 50,000+)</option>
+            <option value="Flexible / Hourly Architecture Consultation">Flexible / Hourly Architecture Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-timeline">TARGET TIMELINE</label>
+          <select id="wa-timeline">
+            <option value="Immediate (< 7 Days)">Immediate (&lt; 7 Days)</option>
+            <option value="Standard Sprint (2 - 4 Weeks)" selected>Standard Sprint (2 - 4 Weeks)</option>
+            <option value="Comprehensive Build (1 - 2 Months)">Comprehensive Build (1 - 2 Months)</option>
+            <option value="Planning / Exploratory Phase">Planning / Exploratory Phase</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wa-project-notes">PROJECT BRIEF / GOALS (OPTIONAL)</label>
+          <textarea id="wa-project-notes" rows="3" placeholder="Tell Subash about your project vision, target audience, or reference links..."></textarea>
+        </div>
+        <button type="submit" class="btn-dispatch-modal-whatsapp" id="btn-submit-whatsapp-booking">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Send Instant WhatsApp Message to Subash &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Universal Script Setup -->
+  <script src="main.js?v=4.0"></script>
+</body>
+</html>
