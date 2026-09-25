@@ -6838,3 +6838,388 @@ body.dark-semester-theme {
   }
 }
 
+/* ==========================================================================
+   MOBILE RESPONSIVENESS OVERRIDES: ARCHITECTURE INSPECTOR & SYSTEM BLUEPRINTS
+   ========================================================================== */
+
+/* Universal Safety for Architecture Inspector */
+.btn-arch-cta,
+.arch-info-col .btn-primary-orange {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 13px 18px !important;
+  font-size: 0.88rem !important;
+  min-height: 48px !important;
+  height: auto !important;
+  line-height: 1.35 !important;
+}
+
+.btn-arch-cta span,
+.arch-info-col .btn-primary-orange span {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.arch-display-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.arch-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+.arch-info-col {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+.arch-metrics-list {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.arch-metric-item {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.arch-metric-item .m-title {
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.arch-metric-item .m-val {
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.arch-code-col {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.code-preview {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (max-width: 992px) {
+  .arch-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .architecture-section {
+    padding: 48px 0 !important;
+  }
+
+  .arch-tabs-nav {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 24px !important;
+  }
+
+  .arch-tab-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 12px !important;
+    font-size: 0.82rem !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 10px !important;
+  }
+
+  .arch-display-card {
+    padding: 24px 18px !important;
+    border-radius: 18px !important;
+    margin-top: 24px !important;
+  }
+
+  .arch-info-col h3 {
+    font-size: clamp(1.35rem, 5.5vw, 1.7rem) !important;
+    word-break: break-word !important;
+    line-height: 1.3 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .arch-info-col p {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    word-break: break-word !important;
+    margin-bottom: 20px !important;
+  }
+
+  .arch-metrics-list {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .arch-metric-item {
+    padding: 12px 12px !important;
+    border-radius: 10px !important;
+  }
+
+  .arch-metric-item .m-title {
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .arch-metric-item .m-val {
+    font-size: 1.18rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .arch-code-col {
+    padding: 16px 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .code-preview {
+    font-size: 0.78rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Developer Workbench Responsive Rules */
+  .workbench-section {
+    padding: 48px 0 !important;
+  }
+
+  .terminal-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 20px !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .terminal-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+  }
+
+  .terminal-tabs {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  .t-tab {
+    padding: 6px 10px !important;
+    font-size: 0.74rem !important;
+  }
+
+  .terminal-badge {
+    font-size: 0.68rem !important;
+    padding: 2px 8px !important;
+  }
+
+  .terminal-quick-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 14px !important;
+    width: 100% !important;
+  }
+
+  .quick-title {
+    width: 100% !important;
+    font-size: 0.72rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .btn-cli-cmd {
+    font-size: 0.74rem !important;
+    padding: 5px 10px !important;
+  }
+
+  .terminal-body {
+    padding: 14px 12px !important;
+    min-height: auto !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .terminal-screen {
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+    word-break: break-word !important;
+  }
+
+  .terminal-line {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Benchmark Section on Mobile */
+  .benchmark-section {
+    padding: 48px 0 !important;
+  }
+
+  .benchmark-table-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin-top: 20px !important;
+    border-radius: 14px !important;
+  }
+
+  .benchmark-table {
+    width: 100% !important;
+    min-width: 520px !important;
+  }
+
+  .benchmark-table th, .benchmark-table td {
+    padding: 12px 14px !important;
+    font-size: 0.80rem !important;
+  }
+
+  /* Live Commits on Mobile */
+  .commits-section {
+    padding: 48px 0 !important;
+  }
+
+  .commit-feed-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 20px !important;
+  }
+
+  .commit-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    padding: 12px 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .commit-left {
+    width: 100% !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .commit-msg {
+    font-size: 0.82rem !important;
+    word-break: break-word !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .arch-tabs-nav {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .arch-display-card {
+    padding: 20px 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .arch-info-col h3 {
+    font-size: 1.3rem !important;
+  }
+
+  .arch-info-col p {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .arch-metrics-list {
+    gap: 8px !important;
+  }
+
+  .arch-metric-item {
+    padding: 10px 10px !important;
+  }
+
+  .arch-metric-item .m-title {
+    font-size: 0.68rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .arch-metric-item .m-val {
+    font-size: 1.05rem !important;
+  }
+
+  .arch-code-col {
+    padding: 12px 10px !important;
+  }
+
+  .code-preview {
+    font-size: 0.72rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .arch-metrics-list {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .arch-display-card {
+    padding: 16px 10px !important;
+  }
+
+  .arch-info-col h3 {
+    font-size: 1.18rem !important;
+  }
+}
+
+
