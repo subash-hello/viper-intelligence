@@ -18,9 +18,9 @@
   --accent-green: #10b981;
   --green-glow: rgba(16, 185, 129, 0.5);
   
-  --text-main: #ffffff;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
+  --text-main: #F8FAFC;
+  --text-muted: #C7D0DC;
+  --text-dim: #9CA9BA;
   
   --font-brand: 'Orbitron', -apple-system, sans-serif;
   --font-heading: 'Outfit', -apple-system, sans-serif;
@@ -209,7 +209,7 @@ body.dark-semester-theme {
   font-weight: 800;
 }
 
-/* Matrix Background Canvas - Subtle Atmospheric Elegance */
+/* Matrix Background Canvas - Ultra-Subtle Atmospheric Texture (30% of original opacity) */
 #matrix-canvas {
   position: fixed;
   top: 0;
@@ -218,7 +218,7 @@ body.dark-semester-theme {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.20;
+  opacity: 0.06;
 }
 
 /* Ambient Background Watermark Emblem - Tasteful Depth */
@@ -7221,5 +7221,645 @@ body.dark-semester-theme {
     font-size: 1.18rem !important;
   }
 }
+
+/* ==========================================================================
+   VISUAL POLISH MASTER PASS — COHESIVE PREMIUM PRODUCT AESTHETIC
+   ========================================================================== */
+
+/* 1. BACKGROUND NOISE REMOVAL BEHIND ALL HEADINGS & CRISP SECTION SURFACES */
+#matrix-canvas {
+  opacity: 0.06 !important;
+}
+
+.background-watermark {
+  opacity: 0.06 !important;
+}
+
+.section-header,
+.hero-title-group,
+.page-hero-header,
+.contact-info-col h2 {
+  position: relative;
+  z-index: 3;
+}
+
+.section-header::before,
+.hero-title-group::before {
+  content: '';
+  position: absolute;
+  inset: -14px -24px;
+  background: radial-gradient(ellipse 85% 90% at 50% 50%, #060913 65%, rgba(6, 9, 19, 0) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 2. BODY CONTRAST & FULL PROJECT DESCRIPTIONS (NO TRUNCATION) */
+p,
+.hero-subtitle,
+.section-header p,
+.service-card p,
+.project-desc,
+.team-card p,
+.pricing-header p,
+.pricing-features li,
+.arch-info-col p,
+.contact-info-col p,
+.footer-tagline,
+.newsletter-sub,
+.info-item p,
+.benchmark-table td {
+  color: #C7D0DC;
+}
+
+.project-desc {
+  color: #C7D0DC !important;
+  overflow: visible !important;
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: initial !important;
+  text-overflow: clip !important;
+  max-height: none !important;
+  line-height: 1.65 !important;
+}
+
+/* 3. CLEAN EVEN GRIDS FOR HERO CTA ROW, STAT PILLS & 4 BLUEPRINT TABS */
+.hero-cta-wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: 540px !important;
+  align-items: stretch !important;
+}
+
+.hero-cta-wrapper .btn-whatsapp-hero {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.hero-cta-wrapper .btn-primary-orange,
+.hero-cta-wrapper .btn-hero-calc {
+  width: 100% !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 13px 16px !important;
+}
+
+.telemetry-bar {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  max-width: 540px !important;
+  margin-top: 24px !important;
+  padding-top: 20px !important;
+}
+
+.telemetry-item {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  justify-content: flex-start !important;
+  padding: 8px 14px !important;
+  background: rgba(12, 18, 34, 0.85) !important;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+}
+
+.telemetry-item .t-label {
+  color: #C7D0DC !important;
+}
+
+/* Single even 4-column row for Blueprint Tabs on Desktop */
+@media (min-width: 993px) {
+  .arch-tabs-nav {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 28px !important;
+  }
+
+  .arch-tab-btn {
+    width: 100% !important;
+    padding: 12px 14px !important;
+    font-size: 0.86rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* Tighten Section Padding & Remove Large Empty Dark Bands */
+.workbench-section,
+.architecture-section,
+.benchmark-section,
+.gallery-section,
+.services-section,
+.team-section,
+.pricing-section,
+.contact-section,
+.commits-section,
+.process-strip-section {
+  padding: 0 !important;
+  background: rgba(6, 9, 19, 0.92);
+}
+
+.benchmark-section,
+.pricing-section,
+.social-proof-strip,
+.process-strip-section {
+  background: rgba(9, 14, 28, 0.95) !important;
+}
+
+.section-container {
+  padding: 56px 24px !important;
+}
+
+.hero-section {
+  min-height: auto !important;
+  padding-top: 112px !important;
+  padding-bottom: 44px !important;
+}
+
+.footer {
+  padding: 52px 0 36px !important;
+  margin-top: 0 !important;
+  background: #050811 !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.12) !important;
+}
+
+/* 4. SOCIAL PROOF STRIP UNDER HERO */
+.social-proof-strip {
+  position: relative;
+  z-index: 3;
+  border-top: 1px solid rgba(56, 189, 248, 0.16);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+}
+
+.social-proof-container {
+  padding: 26px 24px !important;
+}
+
+.social-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(16, 24, 44, 0.9), rgba(8, 12, 24, 0.95));
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.proof-number {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #ff6b00 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  flex-shrink: 0;
+}
+
+.proof-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.proof-meta strong {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #F8FAFC;
+  line-height: 1.25;
+}
+
+.proof-meta span {
+  font-size: 0.76rem;
+  color: #C7D0DC;
+  line-height: 1.35;
+}
+
+/* 5. 3-STEP PROCESS STRIP ABOVE PRICING */
+.process-strip-section {
+  position: relative;
+  z-index: 3;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.process-strip-container {
+  padding: 48px 24px 44px !important;
+}
+
+.process-header {
+  margin-bottom: 0 !important;
+}
+
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 28px;
+}
+
+.process-step-card {
+  background: linear-gradient(165deg, rgba(15, 22, 41, 0.94) 0%, rgba(8, 12, 24, 0.98) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 18px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 14px 32px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.process-step-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 107, 0, 0.55);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 107, 0, 0.18);
+}
+
+.process-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 3px 10px;
+  border-radius: 999px;
+  align-self: flex-start;
+  letter-spacing: 1px;
+}
+
+.process-step-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #F8FAFC;
+  margin-top: 4px;
+}
+
+.process-step-card p {
+  font-size: 0.88rem;
+  color: #C7D0DC;
+  line-height: 1.55;
+}
+
+.process-step-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-orange);
+  text-shadow: 0 0 12px rgba(255, 107, 0, 0.5);
+}
+
+/* 6. TEAM MONOGRAM AVATARS & ALEX ROBOT AVATAR */
+.monogram-avatar {
+  background: radial-gradient(circle at 30% 25%, #192544 0%, #090f1f 75%) !important;
+  position: relative;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.monogram-initials {
+  font-family: var(--font-brand);
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+  user-select: none;
+}
+
+.monogram-sm .monogram-initials {
+  font-size: 1.25rem;
+  letter-spacing: 1.5px;
+}
+
+.monogram-xs .monogram-initials {
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+}
+
+.monogram-ring {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+}
+
+.monogram-sb {
+  border: 2px solid rgba(255, 107, 0, 0.8) !important;
+  box-shadow: 0 0 24px rgba(255, 107, 0, 0.3), inset 0 0 18px rgba(16, 185, 129, 0.18) !important;
+}
+
+.monogram-sb .monogram-initials {
+  background: linear-gradient(135deg, #ff8533 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.avatar-glow-sb {
+  background: linear-gradient(135deg, #ff6b00, #10b981) !important;
+  opacity: 0.45 !important;
+}
+
+.monogram-ra {
+  border: 2px solid rgba(56, 189, 248, 0.8) !important;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.3), inset 0 0 18px rgba(139, 92, 246, 0.18) !important;
+}
+
+.monogram-ra .monogram-initials {
+  background: linear-gradient(135deg, #38bdf8 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.avatar-glow-ra {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6) !important;
+  opacity: 0.45 !important;
+}
+
+.monogram-bot {
+  border: 2px solid rgba(16, 185, 129, 0.85) !important;
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.32), inset 0 0 18px rgba(56, 189, 248, 0.18) !important;
+}
+
+.avatar-glow-bot {
+  background: linear-gradient(135deg, #10b981, #38bdf8) !important;
+  opacity: 0.5 !important;
+}
+
+.bot-avatar-svg {
+  width: 68% !important;
+  height: 68% !important;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.45));
+}
+
+/* 7. PREMIUM CARD POLISH (HERO-LEVEL TREATMENT FOR SERVICES, PROJECTS, PRICING, TEAM) */
+.service-card,
+.project-showcase-card,
+.pricing-card,
+.team-card {
+  background: linear-gradient(165deg, rgba(15, 22, 41, 0.94) 0%, rgba(8, 12, 24, 0.98) 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 16px 38px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.service-card:hover,
+.project-showcase-card:hover,
+.pricing-card:hover,
+.team-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(255, 107, 0, 0.58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 24px 52px rgba(0, 0, 0, 0.65), 0 0 30px rgba(255, 107, 0, 0.22) !important;
+}
+
+.pricing-card.popular {
+  border-color: rgba(255, 107, 0, 0.72) !important;
+  background: linear-gradient(165deg, rgba(28, 22, 34, 0.95) 0%, rgba(10, 14, 26, 0.98) 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 107, 0, 0.25), 0 18px 44px rgba(0, 0, 0, 0.55), 0 0 32px rgba(255, 107, 0, 0.18) !important;
+}
+
+/* Larger Project Imagery with Less Aggressive Top Cropping */
+.project-img-preview {
+  height: 265px !important;
+}
+
+.ielts-bg {
+  background-image: linear-gradient(180deg, rgba(6, 9, 19, 0.08) 0%, rgba(6, 9, 19, 0.35) 60%, rgba(8, 12, 24, 0.92) 100%), url('assets/master_ielts.jpg') !important;
+  background-position: center 22% !important;
+  background-size: cover !important;
+}
+
+.cafe-bg {
+  background-image: linear-gradient(180deg, rgba(6, 9, 19, 0.08) 0%, rgba(6, 9, 19, 0.35) 60%, rgba(8, 12, 24, 0.92) 100%), url('assets/cafe.jpg') !important;
+  background-position: center 22% !important;
+  background-size: cover !important;
+}
+
+.dental-bg {
+  background-image: linear-gradient(180deg, rgba(6, 9, 19, 0.08) 0%, rgba(6, 9, 19, 0.35) 60%, rgba(8, 12, 24, 0.92) 100%), url('assets/dental.jpg') !important;
+  background-position: center 22% !important;
+  background-size: cover !important;
+}
+
+/* Strengthen Visual Anchors: Terminal Workbench, Architecture Card, Audit Table */
+.terminal-card,
+.arch-display-card,
+.benchmark-table-card {
+  border: 1px solid rgba(56, 189, 248, 0.28) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 60px rgba(0, 0, 0, 0.72), 0 0 36px rgba(56, 189, 248, 0.1) !important;
+}
+
+/* 8. TABLET & MOBILE PASS (390px POLISH) */
+@media (max-width: 992px) {
+  .social-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .process-step-arrow {
+    transform: rotate(90deg);
+    padding: 0;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    padding: 40px 16px !important;
+  }
+
+  .social-proof-container {
+    padding: 20px 16px !important;
+  }
+
+  .process-strip-container {
+    padding: 36px 16px !important;
+  }
+
+  /* Stack all 3-column grids cleanly to 1 column */
+  .recent-projects-grid,
+  .projects-full-grid,
+  .services-grid,
+  .team-grid,
+  .pricing-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px !important;
+  }
+
+  .project-img-preview {
+    height: 215px !important;
+  }
+
+  /* Turn Performance Audit Comparison Table into Stacked Cards on Mobile */
+  .benchmark-table-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    margin-top: 20px !important;
+  }
+
+  .benchmark-table {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .benchmark-table thead {
+    display: none !important;
+  }
+
+  .benchmark-table tbody {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  .benchmark-table tr {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(165deg, rgba(15, 22, 41, 0.96) 0%, rgba(8, 12, 24, 0.98) 100%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.22) !important;
+    border-radius: 16px !important;
+    padding: 16px !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  .benchmark-table td {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+    word-break: break-word !important;
+  }
+
+  .benchmark-table td:first-child {
+    font-size: 1rem !important;
+    color: #F8FAFC !important;
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .benchmark-table td:nth-child(2) {
+    font-size: 0.86rem !important;
+    color: #C7D0DC !important;
+  }
+
+  .benchmark-table td:nth-child(2)::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #9CA9BA;
+    margin-bottom: 3px;
+  }
+
+  .benchmark-table td:nth-child(3),
+  .benchmark-table td.viper-lead-col {
+    background: rgba(16, 185, 129, 0.09) !important;
+    border: 1px solid rgba(16, 185, 129, 0.32) !important;
+    border-radius: 10px !important;
+    padding: 10px 12px !important;
+    font-size: 0.88rem !important;
+    color: #F8FAFC !important;
+  }
+
+  .benchmark-table td:nth-child(3)::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #10b981;
+    margin-bottom: 3px;
+  }
+
+  /* Ensure floating pills NEVER obscure footer text or buttons on mobile */
+  .floating-whatsapp-fab {
+    bottom: 14px !important;
+    left: 12px !important;
+    width: 44px !important;
+    height: 44px !important;
+    opacity: 0.92;
+  }
+
+  .reopen-bot-fab {
+    bottom: 14px !important;
+    right: 12px !important;
+    width: 44px !important;
+    height: 44px !important;
+    opacity: 0.92;
+  }
+
+  .footer {
+    padding: 44px 0 88px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-cta-wrapper {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+
+  .telemetry-bar {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .social-proof-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .proof-item {
+    padding: 12px 14px;
+  }
+}
+
 
 

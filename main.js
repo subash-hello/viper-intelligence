@@ -9,16 +9,24 @@ function initSitePreloaderEngine() {
 
   if (!preloader || !fill || !percentText) return;
 
+  // Skip preloader entirely on repeat visits
+  try {
+    if (localStorage.getItem('viper_preloader_seen') === '1') {
+      preloader.style.display = 'none';
+      return;
+    }
+    localStorage.setItem('viper_preloader_seen', '1');
+  } catch (e) {}
+
   let progress = 0;
   const statusMessages = [
     { at: 15, msg: "INITIALIZING VIPER CORE SYSTEM..." },
-    { at: 45, msg: "CONNECTING CLOUD ARCHITECTURE..." },
-    { at: 75, msg: "ENGAGING 3D AI ASSISTANT (ALEX)..." },
-    { at: 95, msg: "SYSTEM READY." }
+    { at: 50, msg: "CONNECTING CLOUD ARCHITECTURE..." },
+    { at: 85, msg: "SYSTEM READY." }
   ];
 
   const startTime = performance.now();
-  const duration = 2200; // 2.2s smooth loading experience
+  const duration = 650; // Capped under 1s total including fade-out
 
   function updatePreloader(now) {
     const elapsed = now - startTime;
@@ -37,13 +45,10 @@ function initSitePreloaderEngine() {
     if (progress < 100) {
       requestAnimationFrame(updatePreloader);
     } else {
+      preloader.classList.add('fade-out');
       setTimeout(() => {
-        playSciFiBeep('chirp');
-        preloader.classList.add('fade-out');
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 750);
-      }, 300);
+        preloader.style.display = 'none';
+      }, 280);
     }
   }
 
@@ -301,19 +306,19 @@ function initMatrixGridCanvas() {
 
         if (finalBright > 0.65) {
           if (cell.isViper) {
-            ctx.fillStyle = `rgba(255, 107, 0, ${finalBright})`; // Glowing Orange for VIPER
+            ctx.fillStyle = `rgba(255, 107, 0, ${finalBright * 0.55})`; // Subtle Orange for VIPER
             ctx.shadowColor = '#ff6b00';
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 4;
           } else {
-            ctx.fillStyle = `rgba(16, 185, 129, ${finalBright})`; // Glowing Emerald
+            ctx.fillStyle = `rgba(16, 185, 129, ${finalBright * 0.55})`; // Subtle Emerald
             ctx.shadowColor = '#10b981';
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 4;
           }
         } else if (finalBright > 0.25) {
-          ctx.fillStyle = `rgba(56, 189, 248, ${finalBright})`; // Electric Cyan
+          ctx.fillStyle = `rgba(56, 189, 248, ${finalBright * 0.5})`; // Electric Cyan
           ctx.shadowBlur = 0;
         } else {
-          ctx.fillStyle = `rgba(255, 255, 255, ${finalBright * 0.4})`; // Muted Ambient
+          ctx.fillStyle = `rgba(255, 255, 255, ${finalBright * 0.25})`; // Muted Ambient
           ctx.shadowBlur = 0;
         }
 
@@ -1986,8 +1991,8 @@ const SERVICES_MODAL_DATA = [
   },
   {
     id: 1, title: 'Web Hosting & Cloud', category: 'CLOUD INFRASTRUCTURE', icon: '☁️',
-    desc: 'Enterprise managed cloud hosting with automated SSL, DDoS prevention, and 99.99% uptime guarantee.',
-    features: ['✓ Global Edge CDN', '✓ Daily Backups & Restore', '✓ Free SSL & DDoS Protection', '✓ 99.99% Availability SLA'],
+    desc: 'Enterprise managed cloud hosting with automated SSL, DDoS prevention, and high-availability monitoring.',
+    features: ['✓ Global Edge CDN', '✓ Daily Backups & Restore', '✓ Free SSL & DDoS Protection', '✓ High-Availability Cloud SLA'],
     tech: ['Cloudflare', 'AWS', 'Docker', 'Kubernetes', 'Nginx']
   },
   {
@@ -2612,20 +2617,20 @@ function initDeveloperWorkbench() {
       cmd: 'viper deploy --prod',
       lines: [
         { text: '✔ Initializing Next.js 15 Turbopack compilation...', cls: 't-success', delay: 180 },
-        { text: '✔ Inlining Three.js WebGL GPU shaders & matrix physics...', cls: 't-success', delay: 350 },
-        { text: '✔ Running automated test suite: 42/42 tests passed in 128ms.', cls: 't-success', delay: 520 },
-        { text: '✔ Propagating release to 310+ Cloudflare Edge POPs globally.', cls: 't-success', delay: 700 },
-        { text: '🚀 PRODUCTION RELEASE v4.2 DEPLOYED IN 0.38s (P99: 112ms)', cls: 't-cyan', delay: 850 }
+        { text: '✔ Bundling Three.js WebGL shaders & responsive assets...', cls: 't-success', delay: 350 },
+        { text: '✔ Automated build & integration checks passed (simulated).', cls: 't-success', delay: 520 },
+        { text: '✔ Deploying release to global Edge CDN network.', cls: 't-success', delay: 700 },
+        { text: '🚀 SIMULATED PRODUCTION RELEASE READY ON EDGE CDN', cls: 't-cyan', delay: 850 }
       ]
     },
     benchmark: {
       cmd: 'viper benchmark --run-all',
       lines: [
-        { text: '⚡ Running Google Lighthouse v11 Mobile Engine...', cls: 't-success', delay: 180 },
-        { text: '   Performance: 100/100 | Accessibility: 100/100 | Best Practices: 100/100 | SEO: 100/100', cls: 't-cyan', delay: 350 },
-        { text: '✔ Time To First Byte (TTFB): 38ms (Sub-second Edge Cache Hit)', cls: 't-success', delay: 500 },
-        { text: '✔ Simulated Concurrency Load: 10,000 req/sec sustained with 0% dropped packets.', cls: 't-success', delay: 680 },
-        { text: '📊 BENCHMARK VERDICT: 8.4x faster than standard agency WordPress/Webflow stacks.', cls: 't-cyan', delay: 850 }
+        { text: '⚡ Running Core Web Vitals & Mobile Audit Checklist (simulated)...', cls: 't-success', delay: 180 },
+        { text: '   Performance: Optimized | Accessibility: High Contrast | Best Practices: Verified | SEO: Ready', cls: 't-cyan', delay: 350 },
+        { text: '✔ Edge Cache Strategy: Sub-second Time To First Byte target', cls: 't-success', delay: 500 },
+        { text: '✔ Concurrency Architecture: Auto-scaling serverless edge workers', cls: 't-success', delay: 680 },
+        { text: '📊 AUDIT SUMMARY: Engineered lean with zero heavy CMS template bloat.', cls: 't-cyan', delay: 850 }
       ]
     },
     stack: {
@@ -2726,12 +2731,12 @@ const ARCHITECTURE_DATA = {
   frontend: {
     category: 'CLIENT-SIDE PERFORMANCE',
     title: 'Serverless Edge SSR & Three.js Graphics',
-    desc: 'We eliminate sluggish client bundles by pre-rendering dynamic routes on edge workers and running GPU-accelerated Three.js shaders on independent threads with zero render-blocking scripts.',
+    desc: 'We eliminate sluggish client bundles by pre-rendering dynamic routes on edge workers and running GPU-accelerated Three.js shaders cleanly with zero render-blocking bloat.',
     metrics: [
-      { label: 'Largest Contentful Paint', val: '< 0.45s' },
-      { label: 'Rendering Frame Budget', val: '60 FPS Locked' },
-      { label: 'Bundle Overhead', val: '< 45KB Gzipped' },
-      { label: 'Lighthouse Score', val: '100 / 100' }
+      { label: 'Largest Contentful Paint', val: 'Fast Edge SSR' },
+      { label: 'Rendering Frame Target', val: 'Smooth 60 FPS' },
+      { label: 'Bundle Architecture', val: 'Lean JS Payload' },
+      { label: 'Core Web Vitals', val: 'Performance-First' }
     ],
     code: `<span class="c-comment">// Edge-rendered high-speed route</span>
 <span class="c-keyword">export const</span> runtime = <span class="c-str">'edge'</span>;
@@ -2744,19 +2749,19 @@ const ARCHITECTURE_DATA = {
   },
   backend: {
     category: 'DISTRIBUTED SYSTEMS',
-    title: 'Ultra-High Concurrency Microservices',
-    desc: 'Engineered in Go and Node.js with asynchronous I/O, horizontal autoscaling on container clusters, and distributed Redis caching capable of managing 100,000+ simultaneous visitors.',
+    title: 'High-Concurrency Microservices',
+    desc: 'Engineered in Go and Node.js with asynchronous I/O, horizontal autoscaling on container clusters, and distributed Redis caching built to handle traffic spikes reliably.',
     metrics: [
-      { label: 'P99 Latency SLA', val: '< 18ms' },
-      { label: 'Concurrent Capacity', val: '100,000+ Req/s' },
-      { label: 'Database Connection Pooling', val: 'PGBouncer 10k Pool' },
-      { label: 'Availability Guarantee', val: '99.99% Uptime' }
+      { label: 'API Response Profile', val: 'Low-Latency Edge' },
+      { label: 'Scaling Architecture', val: 'Auto-Scaling' },
+      { label: 'Database Connection Pooling', val: 'Pooled Postgres' },
+      { label: 'Cloud Reliability', val: 'High-Availability' }
     ],
     code: `<span class="c-comment">// High-concurrency cluster worker</span>
 <span class="c-keyword">import</span> { <span class="c-type">EdgeWorkerPool</span> } <span class="c-keyword">from</span> <span class="c-str">'@viper/concurrency'</span>;
 
 <span class="c-keyword">export const</span> worker = <span class="c-keyword">new</span> <span class="c-type">EdgeWorkerPool</span>({
-  concurrency: <span class="c-num">100000</span>,
+  autoscale: <span class="c-keyword">true</span>,
   timeoutMs: <span class="c-num">150</span>,
   cacheLayer: <span class="c-str">'redis-cluster'</span>,
   onBurst: (req) => req.<span class="c-func">drain</span>()
@@ -2765,12 +2770,12 @@ const ARCHITECTURE_DATA = {
   ai: {
     category: 'INTELLIGENT WORKFLOWS',
     title: 'Vector Pipelines & Autonomous AI Agents',
-    desc: 'Embedding custom domain knowledge using pgvector, LangChain orchestration, and streaming sub-50ms token generation for production systems like Master IELTS AI.',
+    desc: 'Embedding custom domain knowledge using pgvector, LangChain orchestration, and real-time streaming responses for production systems like Master IELTS AI.',
     metrics: [
-      { label: 'Vector Query Time', val: '< 12ms' },
-      { label: 'Streaming TTFT', val: '< 85ms' },
-      { label: 'Embedding Dimensions', val: '1536 Cosine' },
-      { label: 'Evaluation Accuracy', val: '99.4%' }
+      { label: 'Vector Retrieval', val: 'Indexed pgvector' },
+      { label: 'Response Delivery', val: 'Live Streaming' },
+      { label: 'Embedding Pipeline', val: 'Semantic Cosine' },
+      { label: 'Knowledge Grounding', val: 'Domain-Tuned RAG' }
     ],
     code: `<span class="c-comment">// Semantic vector retrieval pipeline</span>
 <span class="c-keyword">import</span> { <span class="c-type">VectorStore</span>, <span class="c-type">AIStream</span> } <span class="c-keyword">from</span> <span class="c-str">'@viper/ai'</span>;
@@ -2784,12 +2789,12 @@ const ARCHITECTURE_DATA = {
   devops: {
     category: 'INFRASTRUCTURE & COMPLIANCE',
     title: 'Zero-Trust Cloud WAF & Git IP Handover',
-    desc: 'Production infrastructure guarded by Cloudflare Enterprise WAF, rate limiting, and automated CI/CD pipelines. Every contract includes 100% full source code and infrastructure-as-code handover.',
+    desc: 'Production infrastructure guarded by Cloudflare WAF, rate limiting, and automated CI/CD pipelines. Every contract includes 100% full source code and infrastructure-as-code handover.',
     metrics: [
-      { label: 'DDoS Mitigation Capacity', val: '172 Tbps' },
-      { label: 'Deploy Pipeline Time', val: '< 45s' },
+      { label: 'DDoS & Edge Protection', val: 'Cloudflare WAF' },
+      { label: 'Release Workflow', val: 'Automated CI/CD' },
       { label: 'Client IP Ownership', val: '100% Full Git' },
-      { label: 'Zero-Trust Firewall', val: 'TLS 1.3 Active' }
+      { label: 'Transport Security', val: 'TLS 1.3 Active' }
     ],
     code: `<span class="c-comment">// Infrastructure-As-Code (Terraform / Cloudflare)</span>
 <span class="c-keyword">resource</span> <span class="c-str">"cloudflare_ruleset"</span> <span class="c-str">"viper_waf"</span> {
@@ -2940,7 +2945,7 @@ function initWhatsAppBookingModal() {
 📝 *Project Scope / Notes:*
 ${notes}
 ━━━━━━━━━━━━━━━━━━━━
-📍 *Portal:* Viper Intelligence Web Platform (Kathmandu, Nepal)
+📍 *Portal:* Viper Intelligence Web Platform (Kohalpur, Banke, Nepal)
 👤 *Recipient:* Subash Bhandari (Lead Architect)
 📞 *Direct WhatsApp:* +977 9763876490`;
 
