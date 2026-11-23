@@ -2959,6 +2959,20 @@ ${notes}
 
   // Expose global helper
   window.openViperWhatsAppBookingModal = openModal;
+
+  // Hide floating WhatsApp FAB while hero primary WhatsApp CTA is in view (scrollY < 240)
+  const waFab = document.querySelector('.floating-whatsapp-fab');
+  if (waFab && document.getElementById('hero')) {
+    const syncFabVisibility = () => {
+      if (window.scrollY < 240) {
+        waFab.classList.add('fab-hero-hidden');
+      } else {
+        waFab.classList.remove('fab-hero-hidden');
+      }
+    };
+    syncFabVisibility();
+    window.addEventListener('scroll', syncFabVisibility, { passive: true });
+  }
 }
 
 // ============================================

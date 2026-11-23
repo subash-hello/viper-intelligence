@@ -7236,19 +7236,35 @@ body.dark-semester-theme {
 }
 
 .section-header,
-.hero-title-group,
+.hero-left,
 .page-hero-header,
 .contact-info-col h2 {
   position: relative;
   z-index: 3;
 }
 
-.section-header::before,
-.hero-title-group::before {
+.hero-title-group,
+.hero-subtitle,
+.hero-cta-wrapper,
+.telemetry-bar {
+  position: relative;
+  z-index: 4;
+}
+
+.section-header::before {
   content: '';
   position: absolute;
-  inset: -14px -24px;
+  inset: -12px -20px;
   background: radial-gradient(ellipse 85% 90% at 50% 50%, #060913 65%, rgba(6, 9, 19, 0) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-left::before {
+  content: '';
+  position: absolute;
+  inset: -16px -24px;
+  background: radial-gradient(ellipse 92% 92% at 45% 45%, rgba(6, 9, 19, 0.96) 62%, rgba(6, 9, 19, 0) 100%);
   z-index: -1;
   pointer-events: none;
 }
@@ -7320,9 +7336,25 @@ p,
   width: 100% !important;
   box-sizing: border-box !important;
   justify-content: flex-start !important;
-  padding: 8px 14px !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
   background: rgba(12, 18, 34, 0.85) !important;
   border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  white-space: nowrap !important;
+  font-size: 0.74rem !important;
+}
+
+.hero-section {
+  min-height: auto !important;
+  padding-top: 94px !important;
+  padding-bottom: 36px !important;
+}
+
+/* Smoothly reveal floating WhatsApp FAB after scrolling past the hero CTA */
+.floating-whatsapp-fab.fab-hero-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(16px) !important;
 }
 
 .telemetry-item .t-label {
