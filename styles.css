@@ -7232,7 +7232,16 @@ body.dark-semester-theme {
 }
 
 .background-watermark {
-  opacity: 0.06 !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 560px !important;
+  max-width: 82vw !important;
+  opacity: 0.16 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  filter: drop-shadow(0 0 60px rgba(16, 185, 129, 0.45)) !important;
 }
 
 .section-header,
@@ -7395,14 +7404,14 @@ p,
 .commits-section,
 .process-strip-section {
   padding: 0 !important;
-  background: rgba(6, 9, 19, 0.92);
+  background: rgba(6, 9, 19, 0.72);
 }
 
 .benchmark-section,
 .pricing-section,
 .social-proof-strip,
 .process-strip-section {
-  background: rgba(9, 14, 28, 0.95) !important;
+  background: rgba(9, 14, 28, 0.78) !important;
 }
 
 .section-container {
