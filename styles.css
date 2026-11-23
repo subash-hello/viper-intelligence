@@ -7231,19 +7231,6 @@ body.dark-semester-theme {
   opacity: 0.06 !important;
 }
 
-.background-watermark {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 560px !important;
-  max-width: 82vw !important;
-  opacity: 0.16 !important;
-  z-index: 1 !important;
-  pointer-events: none !important;
-  filter: drop-shadow(0 0 60px rgba(16, 185, 129, 0.45)) !important;
-}
-
 .section-header,
 .hero-left,
 .page-hero-header,
@@ -7265,15 +7252,6 @@ body.dark-semester-theme {
   position: absolute;
   inset: -12px -20px;
   background: radial-gradient(ellipse 85% 90% at 50% 50%, #060913 65%, rgba(6, 9, 19, 0) 100%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.hero-left::before {
-  content: '';
-  position: absolute;
-  inset: -16px -24px;
-  background: radial-gradient(ellipse 92% 92% at 45% 45%, rgba(6, 9, 19, 0.96) 62%, rgba(6, 9, 19, 0) 100%);
   z-index: -1;
   pointer-events: none;
 }
@@ -7404,14 +7382,13 @@ p,
 .commits-section,
 .process-strip-section {
   padding: 0 !important;
-  background: rgba(6, 9, 19, 0.72);
 }
 
 .benchmark-section,
 .pricing-section,
 .social-proof-strip,
 .process-strip-section {
-  background: rgba(9, 14, 28, 0.78) !important;
+  background: rgba(9, 14, 28, 0.72) !important;
 }
 
 .section-container {
